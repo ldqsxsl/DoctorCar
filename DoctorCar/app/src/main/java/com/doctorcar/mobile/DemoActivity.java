@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 
 import java.util.ArrayList;
 
-public class DemoActivity extends AppCompatActivity {
+public class DemoActivity extends FragmentActivity {
 
 	private DemoFragment currentFragment;
 	private DemoViewPagerAdapter adapter;
@@ -41,7 +42,7 @@ public class DemoActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		boolean enabledTranslucentNavigation = getSharedPreferences("shared", Context.MODE_PRIVATE)
 				.getBoolean("translucentNavigation", false);
-		setTheme(enabledTranslucentNavigation ? R.style.AppTheme_TranslucentNavigation : R.style.AppTheme);
+		setTheme(enabledTranslucentNavigation ? android.R.style.Theme_Light_NoTitleBar_Fullscreen : R.style.AppTheme);
 		setContentView(R.layout.activity_home);
 		initUI();
 	}
@@ -196,21 +197,21 @@ public class DemoActivity extends AppCompatActivity {
 
 		currentFragment = adapter.getCurrentFragment();
 
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// Setting custom colors for notification
-				AHNotification notification = new AHNotification.Builder()
-						.setText("5")
-						.setBackgroundColor(ContextCompat.getColor(DemoActivity.this, R.color.red))
-						.setTextColor(ContextCompat.getColor(DemoActivity.this, R.color.white))
-						.build();
-				bottomNavigation.setNotification(notification, 1);
-				Snackbar.make(bottomNavigation, "Snackbar with bottom navigation",
-						Snackbar.LENGTH_SHORT).show();
-
-			}
-		}, 3000);
+//		handler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				// Setting custom colors for notification
+//				AHNotification notification = new AHNotification.Builder()
+//						.setText("5")
+//						.setBackgroundColor(ContextCompat.getColor(DemoActivity.this, R.color.red))
+//						.setTextColor(ContextCompat.getColor(DemoActivity.this, R.color.white))
+//						.build();
+//				bottomNavigation.setNotification(notification, 1);
+//				Snackbar.make(bottomNavigation, "Snackbar with bottom navigation",
+//						Snackbar.LENGTH_SHORT).show();
+//
+//			}
+//		}, 3000);
 
 		//bottomNavigation.setDefaultBackgroundResource(R.drawable.bottom_navigation_background);
 	}
@@ -266,13 +267,13 @@ public class DemoActivity extends AppCompatActivity {
 	/**
 	 * Show or hide the bottom navigation with animation
 	 */
-//	public void showOrHideBottomNavigation(boolean show) {
-//		if (show) {
-//			bottomNavigation.restoreBottomNavigation(true);
-//		} else {
-//			bottomNavigation.hideBottomNavigation(true);
-//		}
-//	}
+	public void showOrHideBottomNavigation(boolean show) {
+		if (show) {
+			bottomNavigation.restoreBottomNavigation(true);
+		} else {
+			bottomNavigation.hideBottomNavigation(true);
+		}
+	}
 
 	/**
 	 * Show or hide selected item background
