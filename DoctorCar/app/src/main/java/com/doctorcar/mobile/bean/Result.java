@@ -16,7 +16,7 @@ public class Result implements Parcelable {
      * status : 1
      * msg : {"user":{"account":"15999761380","createTime":1460444414000,"id":51,"isCoutier":"0","phone":"15999761380","status":"0"},"userToken":"0f31fdd97a44fe324c18053a2d8e3d3f","lsRebate":{"courierCash":0,"courierCashInCode":"2854cb93620140a146fd4ac02ae13f27","id":11,"lastUpdateTime":1460343614000,"rebate":0,"rebateInCode":"2854cb93620140a146fd4ac02ae13f27","status":"0","userId":51}}
      */
-
+//    {"status":"1","data":{"loginName":"jiaoxu","id":95},"message":"成功"}
     private String status;
     /**
      * user : {"account":"15999761380","createTime":1460444414000,"id":51,"isCoutier":"0","phone":"15999761380","status":"0"}

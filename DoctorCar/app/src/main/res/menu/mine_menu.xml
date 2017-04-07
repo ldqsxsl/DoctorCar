@@ -3,18 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/a1"
-        android:title="专题"/>
+        android:visible="true"
+        android:alphabeticShortcut="n"
+        android:title="专题"
+       />
 
     <item
         android:id="@+id/a2"
+        android:visible="true"
+        android:alphabeticShortcut="@string/app_name"
         android:title="精选"/>
 
     <item
         android:id="@+id/a3"
-
+        android:visible="true"
+        android:alphabeticShortcut="n"
         android:title="添加"/>
 
     <item
         android:id="@+id/a4"
+        android:visible="true"
+        android:alphabeticShortcut="n"
         android:title="删除"/>
 </menu>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <include layout="@layout/title_appbar" />
+
+
+    <com.doctorcar.mobile.view.layout.EasyIndicator
+        android:id="@+id/home_fg_easy_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:indicator_bottom_height="3dp"
+        app:indicator_bottom_line_color="@color/alpha_05_white"
+        app:indicator_bottom_line_height="1dp"
+        app:indicator_height="42dp"
+        app:indicator_isBottom_line="true"
+        app:indicator_line_color="@color/colorAccent"
+        app:indicator_normal_color="@color/black"
+        app:indicator_selected_color="@color/colorAccent"
+        app:indicator_textSize="16sp"
+        app:indicator_vertical_line_color="@color/alpha_05_white"
+        app:indicator_vertical_line_h="20dp"
+        app:indicator_vertical_line_w="0dp"
+        app:indicator_width="0dp" />
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/home_fg_recycler_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/home_fg_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+
+    <!--<android.support.v7.widget.SwitchCompat-->
+        <!--android:id="@+id/fragment_demo_switch_colored"-->
+        <!--style="@style/setting"-->
+        <!--android:text="Colored" />-->
+
+    <!--<android.support.v7.widget.SwitchCompat-->
+        <!--android:id="@+id/fragment_demo_switch_five_items"-->
+        <!--style="@style/setting"-->
+        <!--android:text="5 items" />-->
+
+    <!--<android.support.v7.widget.SwitchCompat-->
+        <!--android:id="@+id/fragment_demo_show_hide"-->
+        <!--style="@style/setting"-->
+        <!--android:checked="true"-->
+        <!--android:text="Show bottom navigation" />-->
+
+    <!--<android.support.v7.widget.SwitchCompat-->
+        <!--android:id="@+id/fragment_demo_selected_background"-->
+        <!--style="@style/setting"-->
+        <!--android:checked="false"-->
+        <!--android:text="Show selected background" />-->
+
+    <!--<android.support.v7.widget.SwitchCompat-->
+        <!--android:id="@+id/fragment_demo_force_title_hide"-->
+        <!--style="@style/setting"-->
+        <!--android:checked="false"-->
+        <!--android:text="Force title hide" />-->
+
+    <!--<android.support.v7.widget.SwitchCompat-->
+        <!--android:id="@+id/fragment_demo_translucent_navigation"-->
+        <!--style="@style/setting"-->
+        <!--android:checked="false"-->
+        <!--android:text="Enable translucent navigation" />-->
+
+</LinearLayout>

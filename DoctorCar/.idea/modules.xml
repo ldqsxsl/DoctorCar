@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/DoctorCar.iml" filepath="$PROJECT_DIR$/DoctorCar.iml" />
       <module fileurl="file://$PROJECT_DIR$/ahbottomnavigation/ahbottomnavigation.iml" filepath="$PROJECT_DIR$/ahbottomnavigation/ahbottomnavigation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/choiceimage/choiceimage.iml" filepath="$PROJECT_DIR$/choiceimage/choiceimage.iml" />
     </modules>
   </component>
 </project>

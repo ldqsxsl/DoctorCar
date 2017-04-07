@@ -67,8 +67,8 @@ public class RxBus {
             subjectList = new ArrayList<Subject>();
             subjectMapper.put(tag, subjectList);
         }
-        Subject<T, T> subject;
-        subjectList.add(subject = PublishSubject.create());
+        Subject<T, T> subject = PublishSubject.create();
+        subjectList.add(subject);
         LogUtils.logd("register"+tag + "  size:" + subjectList.size());
         return subject;
     }

@@ -13,6 +13,7 @@ import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
@@ -22,7 +23,7 @@ import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 
 import java.util.ArrayList;
 
-public class DemoActivity extends FragmentActivity {
+public class DemoActivity extends AppCompatActivity {
 
 	private DemoFragment currentFragment;
 	private DemoViewPagerAdapter adapter;
@@ -42,7 +43,8 @@ public class DemoActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		boolean enabledTranslucentNavigation = getSharedPreferences("shared", Context.MODE_PRIVATE)
 				.getBoolean("translucentNavigation", false);
-		setTheme(enabledTranslucentNavigation ? android.R.style.Theme_Light_NoTitleBar_Fullscreen : R.style.AppTheme);
+////		setTheme(enabledTranslucentNavigation ? android.R.style.Theme_Light_NoTitleBar_Fullscreen : R.style.AppTheme);
+//		setTheme(android.R.style.Theme_Light_NoTitleBar_Fullscreen);
 		setContentView(R.layout.activity_home);
 		initUI();
 	}
@@ -68,12 +70,14 @@ public class DemoActivity extends FragmentActivity {
 			tabColors = getApplicationContext().getResources().getIntArray(R.array.tab_colors);
 			navigationAdapter = new AHBottomNavigationAdapter(this, R.menu.bottom_navigation_menu_3);
 			navigationAdapter.setupWithBottomNavigation(bottomNavigation, tabColors);
+//			Toast.makeText(DemoActivity.this,"1111111111111111",Toast.LENGTH_SHORT).show();
 		} else {
+//			Toast.makeText(DemoActivity.this,"2222222222222222",Toast.LENGTH_SHORT).show();
 			AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.ic_apps_black_24dp, R.color.color_tab_1);
 			AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.tab_2, R.mipmap.ic_maps_local_bar, R.color.color_tab_2);
 			AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.mipmap.ic_maps_local_restaurant, R.color.color_tab_3);
-			AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.tab_4, R.mipmap.ic_maps_local_restaurant, R.color.color_tab_4);
-			AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.tab_5, R.mipmap.ic_maps_local_restaurant, R.color.color_tab_5);
+			AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.tab_4,  R.drawable.ic_language_black_24dp, R.color.color_tab_4);
+			AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.tab_5, R.drawable.ic_group_black_24dp, R.color.color_tab_5);
 
 			bottomNavigationItems.add(item1);
 			bottomNavigationItems.add(item2);

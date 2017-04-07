@@ -2,6 +2,8 @@ package com.doctorcar.mobile.common.baserx;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 //import com.jaydenxiao.common.R;
 //import com.jaydenxiao.common.baseapp.BaseApplication;
@@ -56,6 +58,7 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
         this.showDialog=showDialog;
     }
     public RxSubscriber(Context context) {
+//        Log.i("OUTPUT",BaseApplication.getAppContext()+"");
         this(context, BaseApplication.getAppContext().getString(R.string.loading),true);
     }
     public RxSubscriber(Context context, boolean showDialog) {

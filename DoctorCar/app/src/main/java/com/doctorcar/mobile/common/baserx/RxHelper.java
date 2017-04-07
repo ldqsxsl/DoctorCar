@@ -5,6 +5,7 @@ package com.doctorcar.mobile.common.baserx;
 
 import com.doctorcar.mobile.common.basebean.BaseRespose;
 import com.doctorcar.mobile.common.commonutils.LogUtils;
+import com.doctorcar.mobile.utils.TLUtil;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -40,9 +41,10 @@ public class RxHelper {
                     public Observable<T> call(BaseRespose<T> result) {
                         LogUtils.logd("result from api : " + result);
                         if (result.success()) {
+                            TLUtil.showLog("---------------------");
                             return createData(result.data);
                         } else {
-                            return Observable.error(new ServerException(result.msg));
+                            return Observable.error(new ServerException(result.message));
                         }
                     }
                 }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
