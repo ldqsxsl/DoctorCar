@@ -7,17 +7,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.doctorcar.mobile.R;
+import com.doctorcar.mobile.bean.UploadImageResult;
 import com.doctorcar.mobile.common.base.BaseActivity;
-import com.doctorcar.mobile.common.compressorutils.FileUtil;
-import com.doctorcar.mobile.common.security.Base64;
 import com.doctorcar.mobile.module.ask.bean.BrandBean;
 import com.doctorcar.mobile.module.ask.bean.ModelBean;
 import com.doctorcar.mobile.module.ask.contract.AskContract;
@@ -26,6 +25,7 @@ import com.doctorcar.mobile.module.ask.presenter.AskPresenter;
 import com.doctorcar.mobile.module.common.activity.PhotosActivity;
 import com.doctorcar.mobile.module.common.adapter.ChooseAdapter;
 import com.doctorcar.mobile.module.common.bean.EventEntry;
+import com.doctorcar.mobile.utils.ImageUtils;
 import com.doctorcar.mobile.utils.PermissionUtils;
 import com.doctorcar.mobile.utils.TLUtil;
 import com.wbn.choiceimage.lib.Utils.GridSpacingItemDecoration;
@@ -37,20 +37,22 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * Created by dd on 2017/3/8.
  */
 
-public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements ChooseAdapter.OnItmeClickListener ,AskContract.View{
+public class AskActivity extends BaseActivity<AskPresenter, AskModel> implements ChooseAdapter.OnItmeClickListener, AskContract.View {
 
-    @BindView(R.id.editText)
-    EditText editText;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.ask_choice_mode_rl)
@@ -61,8 +63,14 @@ public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements 
     Toolbar toolbar;
     @BindView(R.id.ask_aty_mode_tv)
     TextView askAtyModeTv;
+    @BindView(R.id.ask_aty_mode_et)
+    EditText askAtyModeEt;
 
     private ChooseAdapter mAdapter;
+    private List<PhotoEntry> photos = new ArrayList<PhotoEntry>();
+
+    private BrandBean brandBean;
+    private ModelBean modelBean;
 
     @Override
     public int getLayoutId() {
@@ -84,8 +92,6 @@ public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements 
         recyclerView.setAdapter(mAdapter);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(4, 4, true));
         List<EventEntry> list = new ArrayList<EventEntry>();
-//        mPresenter.submitAskRequest();
-//        Base64.decode()
     }
 
     @OnClick({R.id.ask_choice_mode_rl})
@@ -111,23 +117,8 @@ public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements 
     public void photosMessageEvent(EventEntry entries) {
         if (entries.id == EventEntry.RECEIVED_PHOTOS_ID) {
             mAdapter.reloadList(entries.photos);
-            List<PhotoEntry> photos = entries.photos;
-            StringBuffer stringBuffer = new StringBuffer();
-            String str = "";
-            for(int i = 0 ; i < photos.size(); i++){
-                TLUtil.showLog("PPPPPPPPPPPPPPPPPPPPPPPPPPP");
-                byte[] bytes = FileUtil.fileToByte(photos.get(i).getPath());
-                String img = Base64.encode(bytes);
-//                stringBuffer.append(img);
-                str = str + img;
-                if(i != photos.size()-1){
-                    TLUtil.showLog("OOOOOOOOOOOOOOOOOOOOOOOOO");
-                    str = str+",";
-//                    stringBuffer.append(",");
-                }
-            }
-            TLUtil.showLog("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
-            TLUtil.showLog(str);
+            photos.clear();
+            photos.addAll(entries.photos);
         }
     }
 
@@ -144,7 +135,7 @@ public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements 
 
     public void initToolbar() {
         toolbarTitle.setText("清楚");
-        toolbar.inflateMenu(R.menu.toobar);
+        toolbar.inflateMenu(R.menu.ask_menu);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_navigate_before_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,13 +147,44 @@ public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_share:
-                        TLUtil.showToast("分享");
+                    case R.id.ask_menu_save:
+                        if (photos.size() > 0) {
+                            Map<String, RequestBody> map = new HashMap<String, RequestBody>();
+                            for (int i = 0; i < photos.size(); i++) {
+                                byte[] b = ImageUtils.getImage(photos.get(i).getPath());
+                                File file = new File(photos.get(i).getPath());
+                                map.put("file" + i + "\";filename=\"" + file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), b));
+                            }
+                            mPresenter.uploadImageRequest(map);
+                        } else {
+                            TLUtil.showToast("请选择图片");
+                        }
+
                         break;
                 }
                 return true;
             }
         });
+    }
+
+    @Override
+    public void returnUploadImageData(UploadImageResult object) {
+        TLUtil.showToast("上传成功");
+        TLUtil.showLog(object.getImage_key());
+        submitAsk(object.getImage_key());
+    }
+
+    public void submitAsk(String image_key) {
+        String content = askAtyModeEt.getText().toString().trim();
+        if (brandBean == null || modelBean == null) {
+            TLUtil.showToast("请选择型");
+        } else if (TextUtils.isEmpty(content)) {
+            TLUtil.showToast("请输入内容");
+        }else{
+            Integer brand_id= brandBean.getBrand_id();
+            Integer model_id = modelBean.getModel_id();
+            mPresenter.submitAskRequest(brand_id,model_id,content,image_key);
+        }
     }
 
     @Override
@@ -190,12 +212,12 @@ public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements 
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             Bundle b = data.getBundleExtra("result");
-            BrandBean brandBean = (BrandBean) b.get("brandBean");
-            ModelBean modelBean = (ModelBean) b.get("modelBean");
+            brandBean = (BrandBean) b.get("brandBean");
+            modelBean = (ModelBean) b.get("modelBean");
             switch (requestCode) {
                 case 1:
-                    if (brandBean != null && modelBean != null){
-                        askAtyModeTv.setText(brandBean.getBrand_name()+" "+modelBean.getModel_name());
+                    if (brandBean != null && modelBean != null) {
+                        askAtyModeTv.setText(brandBean.getBrand_name() + " " + modelBean.getModel_name());
                     }
                     break;
             }
@@ -251,6 +273,5 @@ public class AskActivity extends BaseActivity<AskPresenter,AskModel> implements 
                                            @NonNull int[] grantResults) {
         PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, mPermissionGrant);
     }
-
 
 }

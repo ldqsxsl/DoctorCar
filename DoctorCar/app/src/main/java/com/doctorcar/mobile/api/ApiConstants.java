@@ -34,6 +34,8 @@ public class ApiConstants {
 
     public static final String URL = "http://123.57.20.214:8077/wjbERP/erpUser/";
     public static final String URL1 = "http://192.168.20.87:8080/doctorcar/brand/";
+    public static final String URL2 = "http://192.168.20.87:8080/doctorcar/file/";
+    public static final String URL3 = "http://192.168.20.87:8080/doctorcar/problem/";
 
 
     String loginURL = URL + "erpUser/";
@@ -185,6 +187,12 @@ public class ApiConstants {
                 break;
             case HostType.GET_BRAND_LIST:
                 host = URL1;
+                break;
+            case HostType.ADD_PROBLEM:
+                host = URL3;
+                break;
+            case HostType.UPLOAD:
+                host = URL2;
                 break;
             default:
                 host = "";

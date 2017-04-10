@@ -1,11 +1,16 @@
 package com.doctorcar.mobile.module.ask.contract;
 
+import com.doctorcar.mobile.bean.UploadImageResult;
 import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.base.BaseModel;
 import com.doctorcar.mobile.common.base.BasePresenter;
 import com.doctorcar.mobile.common.base.BaseView;
 import com.doctorcar.mobile.module.login.contract.LoginContract;
 
+import java.util.Map;
+
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import rx.Observable;
 
 /**
@@ -14,17 +19,19 @@ import rx.Observable;
 
 public interface AskContract {
     interface Model extends BaseModel {
-        //请求获取新闻
-        Observable<Object> submitAsk(String brand_id, String model_id,String content,String img);
+
+        Observable<Object> submitAsk(Integer brand_id, Integer model_id,String problem_content,String problem_img);
+        Observable<UploadImageResult> uploadImage(Map<String, RequestBody> map);
     }
 
     interface View extends BaseView {
-        //返回登陆数据
+
         void returnAskData(Object object);
+        void returnUploadImageData(UploadImageResult object);
     }
     abstract static class Presenter extends BasePresenter<AskContract.View, AskContract.Model> {
-        //发起获取单条新闻请求
-        public abstract void submitAskRequest(String brand_id, String model_id,String content,String img);
+        public abstract void submitAskRequest(Integer brand_id, Integer model_id,String content,String img);
+        public abstract void uploadImageRequest(Map<String, RequestBody> map);
     }
 
 }

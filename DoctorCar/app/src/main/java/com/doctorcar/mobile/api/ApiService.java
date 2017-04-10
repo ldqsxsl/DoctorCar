@@ -3,6 +3,7 @@ package com.doctorcar.mobile.api;
 
 
 import com.doctorcar.mobile.bean.NewsDetail;
+import com.doctorcar.mobile.bean.UploadImageResult;
 import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.basebean.BaseRespose;
 import com.doctorcar.mobile.module.ask.bean.BrandModelBean;
@@ -11,7 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -40,16 +43,21 @@ public interface ApiService {
     Observable<BaseRespose<BrandModelBean>> getBrandModel(
             @Header("Cache-Control") String cacheControl);
 
-    @GET("submitAsk")
+    @GET("addProblem")
+    @FormUrlEncoded
     Observable<BaseRespose<Object>> submitAsk(
             @Header("Cache-Control") String cacheControl,
-            @Query("brand_id") String brand_id,
-            @Query("model_id") String model_id,
-            @Query("content") String content,
-            @Query("img") String img);
+            @Query("brand_id") Integer brand_id,
+            @Query("model_id") Integer model_id,
+            @Query("problem_content") String content,
+            @Query("problem_img") String img);
     @Multipart
     @POST("upload")
-    Observable<BaseRespose<Object>>uploadImage(@PartMap Map<String ,ResponseBody> file);
+    Observable<BaseRespose<UploadImageResult>>uploadImage(@PartMap Map<String , RequestBody> file);
+
+    @Multipart
+    @POST("upload")
+    Observable<BaseRespose<UploadImageResult>>uploadSingleImage(@Part("file\"; filename=\"image.png") RequestBody file);
 
 //    @GET("nc/article/{postId}/full.html")
 //    Observable<Map<String, NewsDetail>> getNewDetail(
