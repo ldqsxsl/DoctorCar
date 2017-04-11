@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/ask_menu_save"
-        android:title="提交"
+        android:id="@+id/register_menu"
+        android:title="注册"
         app:showAsAction="ifRoom"
-       />
+        />
 </menu>

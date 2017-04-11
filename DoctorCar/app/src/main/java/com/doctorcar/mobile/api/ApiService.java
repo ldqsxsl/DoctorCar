@@ -7,6 +7,7 @@ import com.doctorcar.mobile.bean.UploadImageResult;
 import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.basebean.BaseRespose;
 import com.doctorcar.mobile.module.ask.bean.BrandModelBean;
+import com.doctorcar.mobile.module.register.bean.RegisterResult;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -27,30 +29,34 @@ import retrofit2.http.Url;
 import rx.Observable;
 
 /**
- * des:ApiService
- * Created by xsf
- * on 2016.06.15:47
+ * dd
  */
 public interface ApiService {
 
-    @GET("login")
+    @FormUrlEncoded
+    @POST("login")
     Observable<BaseRespose<User>> login(
-            @Header("Cache-Control") String cacheControl,
-            @Query("loginName") String username,
-            @Query("pwd") String password);
+            @Field("user_phone") String username,
+            @Field("user_password") String password);
+
+    @FormUrlEncoded
+    @POST("register")
+    Observable<BaseRespose<RegisterResult>> register(
+            @Field("user_phone") String username,
+            @Field("user_password") String password);
 
     @GET("getBrandList")
     Observable<BaseRespose<BrandModelBean>> getBrandModel(
             @Header("Cache-Control") String cacheControl);
 
-    @GET("addProblem")
     @FormUrlEncoded
+    @POST("addProblem")
     Observable<BaseRespose<Object>> submitAsk(
-            @Header("Cache-Control") String cacheControl,
-            @Query("brand_id") Integer brand_id,
-            @Query("model_id") Integer model_id,
-            @Query("problem_content") String content,
-            @Query("problem_img") String img);
+            @Field("user_id") String user_id,
+            @Field("brand_id") Integer brand_id,
+            @Field("model_id") Integer model_id,
+            @Field("problem_content") String content,
+            @Field("problem_img") String img);
     @Multipart
     @POST("upload")
     Observable<BaseRespose<UploadImageResult>>uploadImage(@PartMap Map<String , RequestBody> file);

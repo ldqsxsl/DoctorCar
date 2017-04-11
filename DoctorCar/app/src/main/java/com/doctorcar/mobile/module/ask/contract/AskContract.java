@@ -20,7 +20,7 @@ import rx.Observable;
 public interface AskContract {
     interface Model extends BaseModel {
 
-        Observable<Object> submitAsk(Integer brand_id, Integer model_id,String problem_content,String problem_img);
+        Observable<Object> submitAsk(String user_id,Integer brand_id, Integer model_id,String problem_content,String problem_img);
         Observable<UploadImageResult> uploadImage(Map<String, RequestBody> map);
     }
 
@@ -30,7 +30,7 @@ public interface AskContract {
         void returnUploadImageData(UploadImageResult object);
     }
     abstract static class Presenter extends BasePresenter<AskContract.View, AskContract.Model> {
-        public abstract void submitAskRequest(Integer brand_id, Integer model_id,String content,String img);
+        public abstract void submitAskRequest(String user_id,Integer brand_id, Integer model_id,String content,String img);
         public abstract void uploadImageRequest(Map<String, RequestBody> map);
     }
 

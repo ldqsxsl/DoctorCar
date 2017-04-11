@@ -22,8 +22,8 @@ import rx.functions.Func1;
 
 public class AskModel implements AskContract.Model {
     @Override
-    public Observable<Object> submitAsk(Integer brand_id, Integer model_id, String content, String img) {
-        return Api.getDefault(HostType.ADD_PROBLEM).submitAsk(Api.getCacheControl(),brand_id,model_id,content,img).map(new Func1<BaseRespose<Object>, Object>() {
+    public Observable<Object> submitAsk(String user_id,Integer brand_id, Integer model_id, String content, String img) {
+        return Api.getDefault(HostType.ADD_PROBLEM).submitAsk(user_id,brand_id,model_id,content,img).map(new Func1<BaseRespose<Object>, Object>() {
             @Override
             public Object call(BaseRespose<Object> objectBaseRespose) {
                 return objectBaseRespose.data;

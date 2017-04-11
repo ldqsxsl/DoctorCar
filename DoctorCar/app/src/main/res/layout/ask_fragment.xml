@@ -13,7 +13,34 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+        <com.doctorcar.mobile.view.layout.EasyIndicator
+            android:id="@+id/ask_fg_easy_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:indicator_bottom_height="3dp"
+            app:indicator_bottom_line_color="@color/alpha_05_white"
+            app:indicator_bottom_line_height="1dp"
+            app:indicator_height="42dp"
+            app:indicator_isBottom_line="true"
+            app:indicator_line_color="@color/colorAccent"
+            app:indicator_normal_color="@color/black"
+            app:indicator_selected_color="@color/colorAccent"
+            app:indicator_textSize="16sp"
+            app:indicator_vertical_line_color="@color/alpha_05_white"
+            app:indicator_vertical_line_h="20dp"
+            app:indicator_vertical_line_w="0dp"
+            app:indicator_width="0dp" />
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/ask_fg_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
 
 
     <LinearLayout

@@ -35,6 +35,7 @@ import com.doctorcar.mobile.module.ask.activity.FragmentTab2;
 import com.doctorcar.mobile.module.ask.activity.FragmentTab3;
 import com.doctorcar.mobile.module.ask.activity.FragmentTab4;
 import com.doctorcar.mobile.module.ask.adapter.FragmentAdapter;
+import com.doctorcar.mobile.module.login.activity.LoginActivity;
 import com.doctorcar.mobile.utils.TLUtil;
 import com.doctorcar.mobile.view.layout.EasyIndicator;
 
@@ -42,6 +43,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  *
@@ -97,6 +100,15 @@ public class DemoFragment extends Fragment {
                     startActivity(new Intent(getActivity(), AskActivity.class));
                 }
             });
+            EasyIndicator easyIndicator = (EasyIndicator) view.findViewById(R.id.ask_fg_easy_indicator);
+            ViewPager viewPager = (ViewPager) view.findViewById(R.id.ask_fg_view_pager);
+            easyIndicator.setTabTitles(new String[]{"已解决", "待解决"});
+
+            // 自定义设置
+            easyIndicator.setViewPage(viewPager, new FragmentAdapter(getFragmentManager(),
+                    new Fragment[]{new FragmentTab1(), new FragmentTab2()}));
+
+
 //			initDemoList(view);
             return view;
         } else if (arguments == 2) {
@@ -393,7 +405,7 @@ public class DemoFragment extends Fragment {
                 Log.d("STATE", state.name());
                 TextView textView = (TextView) toolbar.getMenu().getItem(0).getActionView();
                 if( state == State.EXPANDED ) {
-                    textView.setText("晴川");
+                    textView.setBackgroundResource(R.drawable.ic_equalizer_black_24dp);
                     textView.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
                     toolbar.setOverflowIcon(ContextCompat.getDrawable(getActivity(),R.drawable.ic_notifications_none_white_24dp));
                     title.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
@@ -401,7 +413,7 @@ public class DemoFragment extends Fragment {
                 }else if(state == State.COLLAPSED){
                     toolbar.setOverflowIcon(ContextCompat.getDrawable(getActivity(),R.drawable.ic_notifications_none_black_24dp));
                     title.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
-                    textView.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
+                    textView.setBackgroundResource(R.drawable.ic_equalizer_black_24dp);
                     //折叠状态
                 }else {
                     //中间状态
@@ -409,6 +421,16 @@ public class DemoFragment extends Fragment {
             }
         });
 
+        CircleImageView headIv = (CircleImageView) view.findViewById(R.id.my_fg_head_iv);
+        TextView headNameTv = (TextView) view.findViewById(R.id.my_fg_head_name_tv);
+        TextView headDescriptionTv = (TextView) view.findViewById(R.id.my_fg_head_description_tv);
+        TextView signTv = (TextView) view.findViewById(R.id.my_fg_head_sign_tv);
+        headNameTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
 //		button = (Button) view.findViewById(R.id.popupMenu);
 //		button.setOnClickListener(new View.OnClickListener() {
 //			@Override

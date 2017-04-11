@@ -29,7 +29,7 @@ import rx.functions.Func1;
 public class LoginModel implements LoginContract.Model {
     @Override
     public Observable<User> getLoginData(String username, String password) {
-        return Api.getDefault(HostType.LOGIN).login(Api.getCacheControl(),username,password).map(new Func1<BaseRespose<User>, User>() {
+        return Api.getDefault(HostType.LOGIN).login(username,password).map(new Func1<BaseRespose<User>, User>() {
             @Override
             public User call(BaseRespose<User> userBaseRespose) {
                 TLUtil.showLog(userBaseRespose.toString()+"----------------");

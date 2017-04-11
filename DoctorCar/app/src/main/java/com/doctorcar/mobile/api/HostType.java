@@ -40,6 +40,8 @@ public class HostType {
 
     public static final int UPLOAD = 8 ;
 
+    public static final int REGISTER = 9;
+
     /**
      * 网易新闻视频的host
      */

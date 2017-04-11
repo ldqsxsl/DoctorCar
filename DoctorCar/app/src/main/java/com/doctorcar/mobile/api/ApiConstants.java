@@ -37,6 +37,13 @@ public class ApiConstants {
     public static final String URL2 = "http://192.168.20.87:8080/doctorcar/file/";
     public static final String URL3 = "http://192.168.20.87:8080/doctorcar/problem/";
 
+    private static String BASE_URL = "http://192.168.20.87:8080/doctorcar/" ;
+    private static String USER_URL = BASE_URL + "user/";
+    private static String BRAND_URL = BASE_URL + "brand/";
+    private static String FILE_URL = BASE_URL + "file/";
+    private static String PROBLEM_URL = BASE_URL + "problem/";
+
+
 
     String loginURL = URL + "erpUser/";
 
@@ -183,16 +190,19 @@ public class ApiConstants {
                 host = "http://kaku.com/";
                 break;
             case HostType.LOGIN:
-                host = URL;
+                host = USER_URL;
                 break;
             case HostType.GET_BRAND_LIST:
-                host = URL1;
+                host = BASE_URL;
                 break;
             case HostType.ADD_PROBLEM:
-                host = URL3;
+                host = PROBLEM_URL;
                 break;
             case HostType.UPLOAD:
-                host = URL2;
+                host = FILE_URL;
+                break;
+            case HostType.REGISTER:
+                host = USER_URL;
                 break;
             default:
                 host = "";

@@ -36,6 +36,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -183,7 +185,7 @@ public class AskActivity extends BaseActivity<AskPresenter, AskModel> implements
         }else{
             Integer brand_id= brandBean.getBrand_id();
             Integer model_id = modelBean.getModel_id();
-            mPresenter.submitAskRequest(brand_id,model_id,content,image_key);
+            mPresenter.submitAskRequest("",brand_id,model_id, content ,image_key);
         }
     }
 

@@ -115,6 +115,8 @@ public class BrandAndModelActivity extends BaseActivity<BrandPresenter, BrandMod
         brandRecyclerView.addItemDecoration(suspensionDecoration = new SuspensionDecoration(BrandAndModelActivity.this, brandBeanList));
         //如果add两个，那么按照先后顺序，依次渲染。
         brandRecyclerView.addItemDecoration(new DividerItemDecoration(BrandAndModelActivity.this, DividerItemDecoration.VERTICAL));
+        modelRecyclerView.addItemDecoration(new DividerItemDecoration(BrandAndModelActivity.this, DividerItemDecoration.VERTICAL));
+
         //indexbar初始化
         brandAndModelSideIndexBar.setmPressedShowTextView(brandAndModelTv)//设置HintTextView
                 .setNeedRealIndex(true)//设置需要真实的索引

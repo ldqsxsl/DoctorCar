@@ -19,8 +19,8 @@ import okhttp3.ResponseBody;
 public class AskPresenter extends AskContract.Presenter {
 
     @Override
-    public void submitAskRequest(Integer brand_id, Integer model_id, String content, String img) {
-        mRxManage.add(mModel.submitAsk(brand_id,model_id,content,img).subscribe(new RxSubscriber<Object>(mContext) {
+    public void submitAskRequest(String user_id,Integer brand_id, Integer model_id, String content, String img) {
+        mRxManage.add(mModel.submitAsk(user_id,brand_id,model_id,content,img).subscribe(new RxSubscriber<Object>(mContext) {
             @Override
             protected void _onNext(Object result) {
                 mView.returnAskData(result);

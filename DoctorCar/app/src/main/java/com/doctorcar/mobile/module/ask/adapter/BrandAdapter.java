@@ -20,8 +20,8 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
     private Context mContext;
     private List<BrandBean> mDatas;
     private LayoutInflater mInflater;
-    private Integer pos = 0;
-    private View clickView = null;
+//    private Integer pos = 0;
+//    private View clickView = null;
 
     public BrandAdapter(Context mContext, List<BrandBean> mDatas) {
         this.mContext = mContext;
@@ -53,18 +53,18 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final BrandBean brandBean = mDatas.get(position);
         holder.brandName.setText(brandBean.getBrand_name());
-        if (position == pos){
-            holder.content.setBackgroundColor(mContext.getResources().getColor(R.color.chat_tip_color));
-        }
+//        if (position == pos){
+//            holder.content.setBackgroundColor(mContext.getResources().getColor(R.color.chat_tip_color));
+//        }
         holder.content.setTag(R.id.tag,position);
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pos = (Integer) v.getTag(R.id.tag);
+//                pos = (Integer) v.getTag(R.id.tag);
                 if (onRecyclerViewListener != null){
                     onRecyclerViewListener.onItemClick(position,brandBean);
                 }
-               notifyDataSetChanged();
+//               notifyDataSetChanged();
             }
         });
         holder.brandImg.setImageResource(R.mipmap.car_brand_baoma);

@@ -20,6 +20,7 @@
         <activity android:name=".module.ask.activity.BrandAndModelActivity"/>
         <activity android:name=".module.ask.activity.AskActivity"/>
         <activity android:name=".module.common.activity.PhotosActivity"/>
+        <activity android:name=".module.register.activity.RegisterActivity"/>
     </application>
 
 </manifest>
