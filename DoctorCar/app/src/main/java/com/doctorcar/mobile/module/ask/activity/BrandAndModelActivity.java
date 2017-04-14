@@ -62,8 +62,8 @@ public class BrandAndModelActivity extends BaseActivity<BrandPresenter, BrandMod
     private ModelAdapter modelAdapter;
     private LinearLayoutManager mManager;
     private SuspensionDecoration suspensionDecoration;
-    private List<BrandBean> brandBeanList = new ArrayList<>();
-    private List<ModelBean> modelBeanList = new ArrayList<>();
+    private List<BrandBean> brandBeanList = new ArrayList<BrandBean>();
+    private List<ModelBean> modelBeanList = new ArrayList<ModelBean>();
     private static final String INDEX_STRING_TOP = "↑";
 
     private BrandBean brandBean ;

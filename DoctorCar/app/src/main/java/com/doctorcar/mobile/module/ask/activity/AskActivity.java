@@ -191,7 +191,7 @@ public class AskActivity extends BaseActivity<AskPresenter, AskModel> implements
 
     @Override
     public void returnAskData(Object object) {
-
+        finish();
     }
 
     @Override

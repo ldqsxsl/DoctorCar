@@ -7,6 +7,7 @@ import com.doctorcar.mobile.bean.UploadImageResult;
 import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.basebean.BaseRespose;
 import com.doctorcar.mobile.module.ask.bean.BrandModelBean;
+import com.doctorcar.mobile.module.ask.bean.ProblemResult;
 import com.doctorcar.mobile.module.register.bean.RegisterResult;
 
 import java.util.List;
@@ -48,6 +49,12 @@ public interface ApiService {
     @GET("getBrandList")
     Observable<BaseRespose<BrandModelBean>> getBrandModel(
             @Header("Cache-Control") String cacheControl);
+
+    @GET("getProblemList")
+    Observable<BaseRespose<ProblemResult>> getProblem(
+            @Query("page") Integer page,
+            @Query("page_size") Integer page_size
+    );
 
     @FormUrlEncoded
     @POST("addProblem")

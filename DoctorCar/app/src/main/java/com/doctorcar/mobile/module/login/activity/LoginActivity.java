@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.doctorcar.mobile.DemoActivity;
 import com.doctorcar.mobile.R;
 import com.doctorcar.mobile.bean.User;
@@ -20,6 +21,7 @@ import com.doctorcar.mobile.module.login.model.LoginModel;
 import com.doctorcar.mobile.module.login.presenter.LoginPresenter;
 import com.doctorcar.mobile.module.register.activity.RegisterActivity;
 import com.doctorcar.mobile.utils.ImageUtils;
+import com.doctorcar.mobile.utils.SPUtils;
 import com.doctorcar.mobile.utils.TLUtil;
 
 import java.io.File;
@@ -90,6 +92,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
 
     @Override
     public void returnLoginData(User user) {
+        SPUtils.setParams("user", JSON.toJSONString(user));
         TLUtil.showToast("登陆成功");
         finish();
     }

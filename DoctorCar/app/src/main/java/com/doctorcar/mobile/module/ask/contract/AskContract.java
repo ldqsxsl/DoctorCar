@@ -25,7 +25,6 @@ public interface AskContract {
     }
 
     interface View extends BaseView {
-
         void returnAskData(Object object);
         void returnUploadImageData(UploadImageResult object);
     }

@@ -23,24 +23,18 @@ public class HostType {
      */
     public static final int TYPE_COUNT = 3;
 
-    /**
-     * 登陆
-     */
+    //登陆
     public static final int LOGIN = 5;
-
-    /**
-     * 获取品牌和型号
-     */
+    //获取品牌和型号
     public static final int GET_BRAND_LIST = 6;
-
-    /**
-     *  提交问问
-     */
+    //提交问题
     public static final int ADD_PROBLEM = 7;
-
+    //上传图片
     public static final int UPLOAD = 8 ;
-
+   //注册
     public static final int REGISTER = 9;
+    //获取问题列表
+    public static final int GET_PROBLEM_LIST = 10;
 
     /**
      * 网易新闻视频的host

@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +30,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.doctorcar.mobile.bean.User;
+import com.doctorcar.mobile.common.commonutils.ImageLoaderUtils;
 import com.doctorcar.mobile.module.ask.activity.AskActivity;
+import com.doctorcar.mobile.module.ask.activity.AskAlreadyFragment;
 import com.doctorcar.mobile.module.ask.activity.FragmentTab1;
 import com.doctorcar.mobile.module.ask.activity.FragmentTab2;
 import com.doctorcar.mobile.module.ask.activity.FragmentTab3;
 import com.doctorcar.mobile.module.ask.activity.FragmentTab4;
 import com.doctorcar.mobile.module.ask.adapter.FragmentAdapter;
 import com.doctorcar.mobile.module.login.activity.LoginActivity;
+import com.doctorcar.mobile.utils.SPUtils;
 import com.doctorcar.mobile.utils.TLUtil;
 import com.doctorcar.mobile.view.layout.EasyIndicator;
 
@@ -102,11 +108,11 @@ public class DemoFragment extends Fragment {
             });
             EasyIndicator easyIndicator = (EasyIndicator) view.findViewById(R.id.ask_fg_easy_indicator);
             ViewPager viewPager = (ViewPager) view.findViewById(R.id.ask_fg_view_pager);
-            easyIndicator.setTabTitles(new String[]{"已解决", "待解决"});
+            easyIndicator.setTabTitles(new String[]{"已解决", "待解决","我的问答"});
 
             // 自定义设置
             easyIndicator.setViewPage(viewPager, new FragmentAdapter(getFragmentManager(),
-                    new Fragment[]{new FragmentTab1(), new FragmentTab2()}));
+                    new Fragment[]{new AskAlreadyFragment(), new FragmentTab2(), new FragmentTab2()}));
 
 
 //			initDemoList(view);
@@ -424,7 +430,16 @@ public class DemoFragment extends Fragment {
         CircleImageView headIv = (CircleImageView) view.findViewById(R.id.my_fg_head_iv);
         TextView headNameTv = (TextView) view.findViewById(R.id.my_fg_head_name_tv);
         TextView headDescriptionTv = (TextView) view.findViewById(R.id.my_fg_head_description_tv);
+        ImageLoaderUtils.display(getActivity(),headIv,"http://192.168.20.87:8080/images/head.jpg");
         TextView signTv = (TextView) view.findViewById(R.id.my_fg_head_sign_tv);
+        String str = SPUtils.getParams("user","");
+        if (!TextUtils.isEmpty(str)){
+            User user = JSON.parseObject(str,User.class);
+            if (user != null){
+                headNameTv.setText(user.getUser_phone());
+            }
+        }
+
         headNameTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

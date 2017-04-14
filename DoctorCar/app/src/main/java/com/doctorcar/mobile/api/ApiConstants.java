@@ -193,7 +193,7 @@ public class ApiConstants {
                 host = USER_URL;
                 break;
             case HostType.GET_BRAND_LIST:
-                host = BASE_URL;
+                host = BRAND_URL;
                 break;
             case HostType.ADD_PROBLEM:
                 host = PROBLEM_URL;
@@ -203,6 +203,9 @@ public class ApiConstants {
                 break;
             case HostType.REGISTER:
                 host = USER_URL;
+                break;
+            case HostType.GET_PROBLEM_LIST:
+                host = PROBLEM_URL;
                 break;
             default:
                 host = "";
