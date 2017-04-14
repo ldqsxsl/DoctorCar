@@ -9,20 +9,20 @@ import java.io.Serializable;
  */
 public class BaseRespose<T> implements Serializable {
 
-    public String code;
-    public String msg;
-
+    public String status;
+    public String message;
+//    {"data":{"loginName":"jiaoxu","id":95},"status":"1","message":"成功"}
     public T data;
 
     public boolean success() {
-        return "1".equals(code);
+        return "1".equals(status);
     }
 
     @Override
     public String toString() {
         return "BaseRespose{" +
-                "code='" + code + '\'' +
-                ", msg='" + msg + '\'' +
+                "status='" + status + '\'' +
+                ", message='" + message + '\'' +
                 ", data=" + data +
                 '}';
     }

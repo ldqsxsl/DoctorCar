@@ -4,27 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:hint="请输入用户名" />
+    <include layout="@layout/title_appbar"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:inputType="phone"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@null"
+        android:maxLength="11"
+        android:textSize="16sp"
+        android:id="@+id/login_username_et"
+        android:hint="请输入用户名" />
+
+    <View style="@style/line_horizontal_style" />
+
+    <EditText
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/editText2"
+        android:textSize="16sp"
+        android:id="@+id/login_password_et"
         android:hint="请输入用户密码" />
+
+    <View style="@style/line_horizontal_style" />
 
     <Button
         android:text="登陆"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button4" />
+        android:id="@+id/login_submit_bt" />
 </LinearLayout>

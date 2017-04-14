@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="selected_view" type="id"/>
+    <item type="id" name="tag"></item>
+
+    <item name="cat_avatar" type="id"></item>
+    <item name="cat_title" type="id"></item>
+
+    <item name="iv1" type="id"></item>
+    <item name="iv2" type="id"></item>
+
+    <item name="vp" type="id"></item>
+
+</resources>

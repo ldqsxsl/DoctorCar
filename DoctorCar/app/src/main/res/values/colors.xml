@@ -106,4 +106,9 @@
     <color name="alpha_90_black">#E6000000</color>
     <color name="alpha_95_black">#F2000000</color>
 
+    <color name="photo_background_color">#FF424242</color>
+    <color name="album_tip_background_color">#66000000</color>
+    <color name="album_text_background_color">#FFFFFFFF</color>
+    <color name="grid_background_color">#212121</color>
+
 </resources>

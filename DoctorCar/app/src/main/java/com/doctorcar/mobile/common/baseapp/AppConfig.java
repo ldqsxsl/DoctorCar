@@ -1,6 +1,8 @@
 package com.doctorcar.mobile.common.baseapp;
 
 
+import android.content.Context;
+
 /**
  * ************************************************************************
  * **                              _oo0oo_                               **
@@ -43,4 +45,13 @@ public class AppConfig {
     //appid 微信分配的公众账号ID
     public static String APP_ID = "";
 
+    public static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public static void setContext(Context context) {
+        AppConfig.context = context;
+    }
 }

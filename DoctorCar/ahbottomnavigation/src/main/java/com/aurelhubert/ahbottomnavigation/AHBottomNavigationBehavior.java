@@ -110,11 +110,11 @@ public class AHBottomNavigationBehavior<V extends View> extends VerticalScrollin
 	@Override
 	public void onNestedScroll(CoordinatorLayout coordinatorLayout, V child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
 		super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
-		if (dyConsumed < 0) {
-			handleDirection(child, ScrollDirection.SCROLL_DIRECTION_DOWN);
-		} else if (dyConsumed > 0) {
-			handleDirection(child, ScrollDirection.SCROLL_DIRECTION_UP);
-		}
+//		if (dyConsumed < 0) {
+//			handleDirection(child, ScrollDirection.SCROLL_DIRECTION_DOWN);
+//		} else if (dyConsumed > 0) {
+//			handleDirection(child, ScrollDirection.SCROLL_DIRECTION_UP);
+//		}
 	}
 
 	@Override

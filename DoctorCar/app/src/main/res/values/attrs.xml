@@ -1,18 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--昼夜模式主色调-->
-<attr name="dayNightBackground" format="color|reference" />
-<attr name="dayNightOneTextColor" format="color|reference" />
-<attr name="dayNightTwoTextColor" format="color|reference" />
-<attr name="dayNightThreeTextColor" format="color|reference" />
-<attr name="dayNightBackgroundDrawable" format="color|reference" />
+    <!--昼夜模式主色调-->
+    <attr name="dayNightBackground" format="color|reference" />
+    <attr name="dayNightOneTextColor" format="color|reference" />
+    <attr name="dayNightTwoTextColor" format="color|reference" />
+    <attr name="dayNightThreeTextColor" format="color|reference" />
+    <attr name="dayNightBackgroundDrawable" format="color|reference" />
 
-<declare-styleable name="DayNightMode">
-    <attr name="dayNightBackgroundAttr" format="string|reference"/><!--切换背景属性-->
-    <attr name="dayNightOneTextColorAttr" format="string|reference"/><!--切换一级字体颜色属性-->
-    <attr name="dayNightTwoTextColorAttr" format="string|reference"/><!--切换二级字体颜色属性-->
-    <attr name="dayNightThreeTextColorAttr" format="string|reference"/><!--切换三级字体颜色属性-->
-    <attr name="dayNightBackgroundDrawableAttr" format="string|reference"/><!--切换背景图片属性-->
-</declare-styleable>
+    <declare-styleable name="DayNightMode">
+        <attr name="dayNightBackgroundAttr" format="string|reference" /><!--切换背景属性-->
+        <attr name="dayNightOneTextColorAttr" format="string|reference" /><!--切换一级字体颜色属性-->
+        <attr name="dayNightTwoTextColorAttr" format="string|reference" /><!--切换二级字体颜色属性-->
+        <attr name="dayNightThreeTextColorAttr" format="string|reference" /><!--切换三级字体颜色属性-->
+        <attr name="dayNightBackgroundDrawableAttr" format="string|reference" /><!--切换背景图片属性-->
+    </declare-styleable>
+
+
+    <declare-styleable name="rainbowbar">
+        <attr name="rainbowbar_hspace" format="dimension"></attr>
+        <attr name="rainbowbar_vspace" format="dimension"></attr>
+        <attr name="rainbowbar_color" format="color"></attr>
+    </declare-styleable>
+
+    <attr name="indexBarTextSize" format="dimension" />
+
+    <declare-styleable name="IndexBar">
+        <attr name="indexBarTextSize" />
+        <attr name="indexBarPressBackground" format="color" />
+    </declare-styleable>
+
+
+    <!--<attr name="rightPadding" format="dimension" />-->
+
+    <!--<declare-styleable name="SlidingMenu">-->
+        <!--<attr name="rightPadding" />-->
+    <!--</declare-styleable>-->
+
+
+    <declare-styleable name="SlidingMenu">
+        <attr name="mode">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="viewAbove" format="reference" />
+        <attr name="viewBehind" format="reference" />
+        <attr name="behindOffset" format="dimension" />
+        <attr name="behindWidth" format="dimension" />
+        <attr name="behindScrollScale" format="float" />
+        <attr name="touchModeAbove">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+        <attr name="touchModeBehind">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+        <attr name="shadowDrawable" format="reference" />
+        <attr name="shadowWidth" format="dimension" />
+        <attr name="fadeEnabled" format="boolean" />
+        <attr name="fadeDegree" format="float" />
+        <attr name="selectorEnabled" format="boolean" />
+        <attr name="selectorDrawable" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="MyIndicator">
+        <attr name="indicator_height" format="dimension" />
+        <attr name="indicator_bottom_line_color" format="color" />
+        <attr name="indicator_bottom_line_height" format="dimension" />
+        <attr name="indicator_bottom_height" format="dimension" />
+        <attr name="indicator_textSize" format="dimension" />
+        <attr name="indicator_select_textSize" format="dimension" />
+        <attr name="indicator_vertical_line_w" format="dimension" />
+        <attr name="indicator_vertical_line_h" format="dimension" />
+        <attr name="indicator_width" format="dimension" />
+        <attr name="indicator_selected_color" format="color" />
+        <attr name="indicator_normal_color" format="color" />
+        <attr name="indicator_line_color" format="color" />
+        <attr name="indicator_vertical_line_color" format="color" />
+        <attr name="indicator_isBottom_line" format="boolean" />
+    </declare-styleable>
 
 </resources>

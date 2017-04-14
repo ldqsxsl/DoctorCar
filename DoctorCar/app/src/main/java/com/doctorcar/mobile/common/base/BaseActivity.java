@@ -4,11 +4,13 @@ package com.doctorcar.mobile.common.base;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.doctorcar.mobile.R;
 import com.doctorcar.mobile.common.baseapp.AppManager;
@@ -18,6 +20,7 @@ import com.doctorcar.mobile.common.commonutils.ToastUitl;
 import com.doctorcar.mobile.common.daynightmodeutils.ChangeModeController;
 import com.doctorcar.mobile.common.widget.LoadingDialog;
 import com.doctorcar.mobile.common.widget.StatusBarCompat;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import butterknife.ButterKnife;
 
@@ -63,6 +66,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public E mModel;
     public Context mContext;
     public RxManager mRxManager;
+    public SystemBarTintManager tintManager;
 
         @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,20 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         }
         this.initPresenter();
         this.initView();
+
+    }
+
+    public void initWindow() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            tintManager = new SystemBarTintManager(this);
+//            tintManager.setStatusBarTintColor(ContextCompat.getColor(this, R.color.white));
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setNavigationBarTintEnabled(true);
+            // 自定义颜色
+            tintManager.setTintColor(ContextCompat.getColor(this, R.color.white));
+        }
     }
 
     /**
@@ -87,7 +105,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
      */
     private void doBeforeSetcontentView() {
         //设置昼夜主题
-        initTheme();
+//        initTheme();
         // 把actvity放到application栈中管理
         AppManager.getAppManager().addActivity(this);
         // 无标题
@@ -96,6 +114,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 默认着色状态栏
         SetStatusBarColor();
+//        initWindow();
 
     }
     /*********************子类实现*****************************/
@@ -138,7 +157,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
      * 通过Class跳转界面
      **/
     public void startActivity(Class<?> cls) {
-        startActivity(cls, null);
+        startActivity(new Intent(this,cls));
     }
 
     /**

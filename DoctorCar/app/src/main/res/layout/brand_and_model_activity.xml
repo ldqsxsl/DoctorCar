@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/title_appbar" />
+
+    <com.doctorcar.mobile.view.layout.CustomDrawerLayout
+
+        android:id="@+id/brand_model_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/brand_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <com.doctorcar.mobile.view.indexbar.widget.IndexBar
+                android:id="@+id/brand_and_model_side_index_bar"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+
+                app:indexBarPressBackground="@color/alpha_05_black"
+                app:indexBarTextSize="16sp" />
+
+            <TextView
+                android:id="@+id/brand_and_model_tv"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_side_bar_bg"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="48sp"
+                android:visibility="gone"
+                tools:text="A"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/model_recycler_view"
+            android:layout_height="match_parent"
+            android:layout_width="300dp"
+            android:layout_gravity="end"
+            android:fitsSystemWindows="true"
+            android:background="@color/white">
+
+        </android.support.v7.widget.RecyclerView>
+    </com.doctorcar.mobile.view.layout.CustomDrawerLayout>
+
+</LinearLayout>
+
+

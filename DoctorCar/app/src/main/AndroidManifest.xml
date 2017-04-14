@@ -8,13 +8,19 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.NoTitleBar" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity android:name=".DemoActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".module.login.activity.LoginActivity"/>
+        <activity android:name=".module.mine.activity.ViewActivity"/>
+        <activity android:name=".module.ask.activity.BrandAndModelActivity"/>
+        <activity android:name=".module.ask.activity.AskActivity"/>
+        <activity android:name=".module.common.activity.PhotosActivity"/>
+        <activity android:name=".module.register.activity.RegisterActivity"/>
     </application>
 
 </manifest>
