@@ -10,6 +10,7 @@ import java.util.List;
  */
 
 public class ProblemBean implements Serializable{
+    private Integer problem_id;
     private String problem_title;
     private String problem_content;
     private String problem_time;
@@ -18,6 +19,15 @@ public class ProblemBean implements Serializable{
     private Integer model_id;
     private String user_id;
     private List<ImageBean> list_image;
+
+    public Integer getProblem_id() {
+        return problem_id;
+    }
+
+    public void setProblem_id(Integer problem_id) {
+        this.problem_id = problem_id;
+    }
+
     public String getProblem_title() {
         return problem_title;
     }

@@ -36,6 +36,14 @@ public class HostType {
     //获取问题列表
     public static final int GET_PROBLEM_LIST = 10;
 
+    public static final int ADD_ANSWER = 11;
+
+    public static final int GET_ANSWER_LIST = 12;
+
+    public static final int ADD_COMMENT_ANSWER = 13;
+
+    public static  final int GET_COMMENT_ANSWER_LIST = 14;
+
     /**
      * 网易新闻视频的host
      */

@@ -1,4 +1,4 @@
-package com.doctorcar.mobile.module.ask.activity;
+package com.doctorcar.mobile.module.ask.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,7 +17,7 @@ import com.doctorcar.mobile.R;
  * data：2017/4/1
  */
 
-public class FragmentTab4 extends Fragment {
+public class FragmentTab3 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

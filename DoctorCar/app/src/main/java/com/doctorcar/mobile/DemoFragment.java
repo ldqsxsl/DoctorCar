@@ -1,8 +1,6 @@
 package com.doctorcar.mobile;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -14,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,7 +21,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -35,10 +31,10 @@ import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.commonutils.ImageLoaderUtils;
 import com.doctorcar.mobile.module.ask.activity.AskActivity;
 import com.doctorcar.mobile.module.ask.activity.AskAlreadyFragment;
-import com.doctorcar.mobile.module.ask.activity.FragmentTab1;
-import com.doctorcar.mobile.module.ask.activity.FragmentTab2;
-import com.doctorcar.mobile.module.ask.activity.FragmentTab3;
-import com.doctorcar.mobile.module.ask.activity.FragmentTab4;
+import com.doctorcar.mobile.module.ask.fragment.FragmentTab1;
+import com.doctorcar.mobile.module.ask.fragment.FragmentTab2;
+import com.doctorcar.mobile.module.ask.fragment.FragmentTab3;
+import com.doctorcar.mobile.module.ask.fragment.FragmentTab4;
 import com.doctorcar.mobile.module.ask.adapter.FragmentAdapter;
 import com.doctorcar.mobile.module.login.activity.LoginActivity;
 import com.doctorcar.mobile.utils.SPUtils;
@@ -114,19 +110,35 @@ public class DemoFragment extends Fragment {
             easyIndicator.setViewPage(viewPager, new FragmentAdapter(getFragmentManager(),
                     new Fragment[]{new AskAlreadyFragment(), new FragmentTab2(), new FragmentTab2()}));
 
-
 //			initDemoList(view);
             return view;
         } else if (arguments == 2) {
-            View view = inflater.inflate(R.layout.fragment_mall, container, false);
-            initView(view);
-            initData();
+            View view = inflater.inflate(R.layout.blog_fragment, container, false);
+            initBlogView(view);
+//            initView(view);
+//            initData();
             return view;
-        } else {
+        } else if(arguments == 3){
+            View view = inflater.inflate(R.layout.friend_fragment, container, false);
+            initFriendView(view);
+            return view;
+        }else {
             View view = inflater.inflate(R.layout.my_fragment, container, false);
             initDemoMine(view);
             return view;
         }
+    }
+
+    public void initBlogView(View view){
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        TextView title = (TextView) view.findViewById(R.id.toolbar_title);
+        title.setText("Blog");
+    }
+
+    public void initFriendView(View view){
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        TextView title = (TextView) view.findViewById(R.id.toolbar_title);
+        title.setText("Friend");
     }
 
     public void initHomeView(View view){

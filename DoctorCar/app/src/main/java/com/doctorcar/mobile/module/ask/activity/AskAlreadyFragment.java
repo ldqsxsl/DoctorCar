@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.doctorcar.mobile.R;
 import com.doctorcar.mobile.common.base.BaseFragment;
+import com.doctorcar.mobile.common.interf.OnItemClickViewListener;
 import com.doctorcar.mobile.module.ask.adapter.AskAlreadyAdapter;
 import com.doctorcar.mobile.module.ask.bean.ProblemBean;
 import com.doctorcar.mobile.module.ask.bean.ProblemResult;
@@ -33,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class AskAlreadyFragment extends BaseFragment<AskGetPresenter,AskGetModel> implements AskGetContract.View{
+public class AskAlreadyFragment extends BaseFragment<AskGetPresenter,AskGetModel> implements AskGetContract.View,OnItemClickViewListener<ProblemBean> {
     @BindView(R.id.ask_already_fg_rv)
     RecyclerView askAlreadyFgRv;
     @BindView(R.id.ask_already_fg_srl)
@@ -59,6 +60,7 @@ public class AskAlreadyFragment extends BaseFragment<AskGetPresenter,AskGetModel
     @Override
     protected void initView() {
         askAlreadyAdapter = new AskAlreadyAdapter(getActivity(),problemResultList);
+        askAlreadyAdapter.setOnRecyclerViewListener(this);
 
         askAlreadyFgSrl.setOnRefreshListener(mOnRefreshListener);
         askAlreadyFgRv.setLayoutManager(new LinearLayoutManager(getActivity()));// 布局管理器。
@@ -70,6 +72,7 @@ public class AskAlreadyFragment extends BaseFragment<AskGetPresenter,AskGetModel
         // 添加滚动监听。
         askAlreadyFgRv.addOnScrollListener(mOnScrollListener);
         askAlreadyFgRv.setAdapter(askAlreadyAdapter);
+
         mPresenter.getAskRequest(page,5);
     }
 
@@ -105,6 +108,13 @@ public class AskAlreadyFragment extends BaseFragment<AskGetPresenter,AskGetModel
             }
         }
     };
+
+    @Override
+    public void onItemClick(int position, ProblemBean object) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("data",object);
+        startActivity(AnswerActivity.class,bundle);
+    }
 
     @Override
     public void returnGetAskData(ProblemResult problemResult) {

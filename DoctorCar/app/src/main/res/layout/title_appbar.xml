@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-
+        android:elevation="0.5dp"
         android:background="@color/white"
         app:popupTheme="@style/OverflowMenuStyle"
         >
@@ -19,9 +19,9 @@
 
         <TextView
             android:id="@+id/toolbar_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="18sp" />
 

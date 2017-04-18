@@ -6,6 +6,8 @@ import com.doctorcar.mobile.bean.NewsDetail;
 import com.doctorcar.mobile.bean.UploadImageResult;
 import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.basebean.BaseRespose;
+import com.doctorcar.mobile.module.ask.bean.AnswerCommentResult;
+import com.doctorcar.mobile.module.ask.bean.AnswerResult;
 import com.doctorcar.mobile.module.ask.bean.BrandModelBean;
 import com.doctorcar.mobile.module.ask.bean.ProblemResult;
 import com.doctorcar.mobile.module.register.bean.RegisterResult;
@@ -29,9 +31,6 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 import rx.Observable;
 
-/**
- * dd
- */
 public interface ApiService {
 
     @FormUrlEncoded
@@ -64,6 +63,37 @@ public interface ApiService {
             @Field("model_id") Integer model_id,
             @Field("problem_content") String content,
             @Field("problem_img") String img);
+
+    @FormUrlEncoded
+    @POST("addAnswer")
+    Observable<BaseRespose<Object>> submitAnswer(
+            @Field("user_id") String user_id,
+            @Field("problem_id") Integer problem_id,
+            @Field("answer_content") String answer_content);
+
+    @GET("getAnswer")
+    Observable<BaseRespose<AnswerResult>> getAnswer(
+            @Query("problem_id") Integer problem_id,
+            @Query("page") Integer page,
+            @Query("page_size") Integer page_size
+    );
+
+    @FormUrlEncoded
+    @POST("addCommentAnswer")
+    Observable<BaseRespose<Object>> submitCommentAnswer(
+            @Field("answer_id") Integer answer_id,
+            @Field("user_id") String user_id,
+            @Field("comment_answer_content") String comment_answer_content);
+
+    @GET("getCommentAnswer")
+    Observable<BaseRespose<AnswerCommentResult>> getAnswerComment(
+            @Query("answer_id") Integer answer_id,
+            @Query("page") Integer page,
+            @Query("page_size") Integer page_size
+    );
+
+
+
     @Multipart
     @POST("upload")
     Observable<BaseRespose<UploadImageResult>>uploadImage(@PartMap Map<String , RequestBody> file);

@@ -55,16 +55,16 @@ public class AskAlreadyAdapter extends RecyclerView.Adapter<AskAlreadyAdapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final ProblemBean brandBean = mDatas.get(position);
-        holder.brandName.setText(brandBean.getProblem_content());
+        final ProblemBean problemBean = mDatas.get(position);
+        holder.brandName.setText(problemBean.getProblem_content());
         holder.content.setTag(R.id.tag,position);
-        ImageLoaderUtils.display(mContext,holder.brandImg,"http://192.168.20.87:8080/images/"+brandBean.getList_image().get(0).getImage_path());
-        TLUtil.showLog("http://192.168.20.87:8080/images/"+brandBean.getList_image().get(0));
+        ImageLoaderUtils.display(mContext,holder.brandImg,"http://192.168.20.87:8080/images/"+problemBean.getList_image().get(0).getImage_path());
+        TLUtil.showLog("http://192.168.20.87:8080/images/"+problemBean.getList_image().get(0));
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onRecyclerViewListener != null){
-                    onRecyclerViewListener.onItemClick(position,brandBean);
+                    onRecyclerViewListener.onItemClick(position,problemBean);
                 }
             }
         });

@@ -19,6 +19,9 @@
         <activity android:name=".module.mine.activity.ViewActivity"/>
         <activity android:name=".module.ask.activity.BrandAndModelActivity"/>
         <activity android:name=".module.ask.activity.AskActivity"/>
+        <activity android:name=".module.ask.activity.AnswerActivity"/>
+        <activity android:name=".module.ask.activity.AnswerCommentActivity"/>
+        <activity android:name=".module.ask.activity.SubmitAnswerActivity"/>
         <activity android:name=".module.common.activity.PhotosActivity"/>
         <activity android:name=".module.register.activity.RegisterActivity"/>
     </application>

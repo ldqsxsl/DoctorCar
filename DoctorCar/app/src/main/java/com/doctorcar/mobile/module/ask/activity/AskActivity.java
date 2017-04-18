@@ -14,8 +14,10 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.doctorcar.mobile.R;
 import com.doctorcar.mobile.bean.UploadImageResult;
+import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.base.BaseActivity;
 import com.doctorcar.mobile.module.ask.bean.BrandBean;
 import com.doctorcar.mobile.module.ask.bean.ModelBean;
@@ -25,8 +27,10 @@ import com.doctorcar.mobile.module.ask.presenter.AskPresenter;
 import com.doctorcar.mobile.module.common.activity.PhotosActivity;
 import com.doctorcar.mobile.module.common.adapter.ChooseAdapter;
 import com.doctorcar.mobile.module.common.bean.EventEntry;
+import com.doctorcar.mobile.module.login.activity.LoginActivity;
 import com.doctorcar.mobile.utils.ImageUtils;
 import com.doctorcar.mobile.utils.PermissionUtils;
+import com.doctorcar.mobile.utils.SPUtils;
 import com.doctorcar.mobile.utils.TLUtil;
 import com.wbn.choiceimage.lib.Utils.GridSpacingItemDecoration;
 import com.wbn.choiceimage.lib.entity.PhotoEntry;
@@ -185,7 +189,16 @@ public class AskActivity extends BaseActivity<AskPresenter, AskModel> implements
         }else{
             Integer brand_id= brandBean.getBrand_id();
             Integer model_id = modelBean.getModel_id();
-            mPresenter.submitAskRequest("",brand_id,model_id, content ,image_key);
+            String str = SPUtils.getParams("user","");
+            if (!TextUtils.isEmpty(str)){
+                User user = JSON.parseObject(str,User.class);
+                if (user != null){
+                        TLUtil.showLog(user.getUser_id()+"  ooooooooooooooooo");
+                    mPresenter.submitAskRequest(user.getUser_id(),brand_id,model_id, content ,image_key);
+                }else {
+                    startActivity(LoginActivity.class);
+                }
+            }
         }
     }
 

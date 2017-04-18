@@ -42,6 +42,8 @@ public class ApiConstants {
     private static String BRAND_URL = BASE_URL + "brand/";
     private static String FILE_URL = BASE_URL + "file/";
     private static String PROBLEM_URL = BASE_URL + "problem/";
+    private static String ANSWER_URL = BASE_URL + "answer/";
+    private static String COMMENT_ANSWER_URL = BASE_URL + "answercomment/";
 
 
 
@@ -206,6 +208,18 @@ public class ApiConstants {
                 break;
             case HostType.GET_PROBLEM_LIST:
                 host = PROBLEM_URL;
+                break;
+            case HostType.ADD_ANSWER:
+                host = ANSWER_URL;
+                break;
+            case HostType.GET_ANSWER_LIST:
+                host = ANSWER_URL;
+                break;
+            case HostType.ADD_COMMENT_ANSWER:
+                host = COMMENT_ANSWER_URL;
+                break;
+            case HostType.GET_COMMENT_ANSWER_LIST:
+                host = COMMENT_ANSWER_URL;
                 break;
             default:
                 host = "";

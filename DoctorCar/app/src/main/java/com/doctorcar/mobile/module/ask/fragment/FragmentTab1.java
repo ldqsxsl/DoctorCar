@@ -1,4 +1,4 @@
-package com.doctorcar.mobile.module.ask.activity;
+package com.doctorcar.mobile.module.ask.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
