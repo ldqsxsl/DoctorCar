@@ -20,6 +20,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
+import com.doctorcar.mobile.module.blog.activity.WriteBlogActivity;
 
 import java.util.ArrayList;
 
@@ -104,6 +105,11 @@ public class DemoActivity extends AppCompatActivity {
 					return true;
 				}
 
+//				if (position == 2){
+//					startActivity(new Intent(DemoActivity.this, WriteBlogActivity.class));
+//				}
+
+
 				if (currentFragment != null) {
 					currentFragment.willBeHidden();
 				}
@@ -114,7 +120,6 @@ public class DemoActivity extends AppCompatActivity {
 
 				if (position == 1) {
 					bottomNavigation.setNotification("", 1);
-//
 //					floatingActionButton.setVisibility(View.VISIBLE);
 //					floatingActionButton.setAlpha(0f);
 //					floatingActionButton.setScaleX(0f);

@@ -22,6 +22,16 @@ public class ScreenUtils
 		throw new UnsupportedOperationException("cannot be instantiated");
 	}
 
+	public static int getScreenH(Context aty) {
+		DisplayMetrics dm = aty.getResources().getDisplayMetrics();
+		return dm.heightPixels;
+	}
+
+	public static int getScreenW(Context aty) {
+		DisplayMetrics dm = aty.getResources().getDisplayMetrics();
+		return dm.widthPixels;
+	}
+
 	/**
 	 * 获得屏幕高度
 	 * 

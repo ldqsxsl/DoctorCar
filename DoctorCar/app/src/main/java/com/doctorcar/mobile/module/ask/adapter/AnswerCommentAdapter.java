@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.doctorcar.mobile.R;
+import com.doctorcar.mobile.common.commonutils.TimeUtil;
 import com.doctorcar.mobile.common.interf.OnItemClickViewListener;
 import com.doctorcar.mobile.module.ask.bean.AnswerBean;
 import com.doctorcar.mobile.module.ask.bean.AnswerCommentBean;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dd on 2017/4/18.
@@ -65,7 +68,12 @@ public class AnswerCommentAdapter extends RecyclerView.Adapter<RecyclerView.View
         final int pos = getRealPosition(viewHolder);
         final AnswerCommentBean data = mDatas.get(pos);
         if(viewHolder instanceof AnswerCommentAdapter.Holder) {
-            ((AnswerCommentAdapter.Holder) viewHolder).text.setText(data.getComment_answer_content());
+            ((AnswerCommentAdapter.Holder) viewHolder).contentTv.setText(data.getComment_answer_content()+"");
+            ((Holder) viewHolder).nameTv.setText(data.getUser_phone()+"");
+            ((Holder) viewHolder).descriptionTv.setText(data.getUser_description()+"");
+            ((Holder) viewHolder).timeTv.setText(TimeUtil.formatData(TimeUtil.dateFormatYMDofChinese,Long.parseLong(data.getComment_answer_time())));
+
+//            ((Holder) viewHolder).headIv.setBackgroundResource("");
             if(onRecyclerViewListener == null) return;
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,12 +91,22 @@ public class AnswerCommentAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getItemCount() {
         return mHeaderView == null ? mDatas.size() : mDatas.size() + 1;
     }
+
     class Holder extends RecyclerView.ViewHolder {
-        TextView text;
+        TextView contentTv;
+        TextView nameTv;
+        TextView descriptionTv;
+        TextView timeTv;
+        CircleImageView headIv;
+
         public Holder(View itemView) {
             super(itemView);
             if(itemView == mHeaderView) return;
-            text = (TextView) itemView.findViewById(R.id.answer_comment_item_content_tv);
+            contentTv = (TextView) itemView.findViewById(R.id.answer_comment_item_content_tv);
+            nameTv = (TextView) itemView.findViewById(R.id.answer_comment_item_name_tv);
+            descriptionTv = (TextView) itemView.findViewById(R.id.answer_comment_item_description_tv);
+            timeTv = (TextView) itemView.findViewById(R.id.answer_comment_item_time_tv);
+            headIv = (CircleImageView) itemView.findViewById(R.id.answer_comment_item_iv);
         }
     }
 }

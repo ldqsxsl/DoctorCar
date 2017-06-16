@@ -13,6 +13,9 @@ public class AnswerBean implements Serializable{
     private Integer problem_id;
     private String answer_content;
     private String answer_time;
+    private Integer answer_praise_number;
+    private Integer answer_comment_number;
+    private boolean is_my_praise;//我是否点赞
 
     public Integer getAnswer_id() {
         return answer_id;
@@ -54,4 +57,27 @@ public class AnswerBean implements Serializable{
         this.answer_time = answer_time;
     }
 
+    public Integer getAnswer_praise_number() {
+        return answer_praise_number;
+    }
+
+    public void setAnswer_praise_number(Integer answer_praise_number) {
+        this.answer_praise_number = answer_praise_number;
+    }
+
+    public Integer getAnswer_comment_number() {
+        return answer_comment_number;
+    }
+
+    public void setAnswer_comment_number(Integer answer_comment_number) {
+        this.answer_comment_number = answer_comment_number;
+    }
+
+    public boolean is_my_praise() {
+        return is_my_praise;
+    }
+
+    public void setIs_my_praise(boolean is_my_praise) {
+        this.is_my_praise = is_my_praise;
+    }
 }

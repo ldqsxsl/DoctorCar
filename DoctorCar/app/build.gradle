@@ -1,10 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android'
+
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.doctorcar.moblie"
         minSdkVersion 15
@@ -12,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -29,6 +33,25 @@ android {
             path "CMakeLists.txt"
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+greendao {
+    /**
+     *GreenDao实体类包文件夹
+     */
+    targetGenDir 'src/main/java'
+    /**
+     * 版本号
+     */
+    schemaVersion  2
+    /**
+     * greendao输出dao数据库操作实体类文件夹
+     */
+    daoPackage 'com.doctorcar.mobile.database.dao'
 }
 
 dependencies {
@@ -36,11 +59,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
     compile project(':ahbottomnavigation')
-    compile 'com.android.support:cardview-v7:25.0.1'
-    compile 'com.android.support:design:25.0.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     //retrofit和rxjava
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
     compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
@@ -59,8 +82,6 @@ dependencies {
     //图片缩放
     compile 'com.orhanobut:logger:1.13'
     //打印日志
-    compile 'com.github.bumptech.glide:glide:3.6.1'
-    //显示图片框架
     compile 'com.github.clans:fab:1.6.4'
     //悬浮动画菜单
     compile 'cn.hugeterry.updatefun:updatefun:1.8.6'
@@ -79,4 +100,17 @@ dependencies {
     compile project(':choiceimage')
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
     compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
+    compile project(':richeditor')
+    compile 'org.greenrobot:greendao:3.2.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile project(':progress_button')
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0-rc-1036'
+    //显示图片框架
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.facebook.fresco:fresco:1.3.0'
+    compile 'org.robolectric:shadows-multidex:3.4-rc2'
+    //微信sdk
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
 }

@@ -6,10 +6,26 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="popupMenuStyle">@style/MyPopupMenu</item>
+        <item name="dropDownListViewStyle">@style/MyListViewStyle</item>
+
         <item name="android:windowBackground">@color/white</item>
         <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
         <item name="actionMenuTextColor">#000000</item>
         <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+
+    <style name="MyPopupMenu" >
+        <item name="android:popupBackground">#50f500</item>
+    </style>
+
+    <style name="MyListViewStyle">
+        <item name="android:divider">#F00</item>
+        <item name="android:dividerHeight">1px</item>
     </style>
 
     <style name="MenuTextStyle">
@@ -81,6 +97,11 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
+    <style name="BottomToTopAnim" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/enter</item>
+        <item name="@android:windowExitAnimation">@anim/exit</item>
+    </style>
+
     <!--普通dialog-->
     <style name="CustomProgressDialog" parent="@style/CustomDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -123,14 +144,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:background">@drawable/line_gradient</item>
+        <item name="android:background">@drawable/line</item>
     </style>
 
     <style name="line_horizontal_height_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">10dp</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:background">@drawable/line_gradient</item>
+        <item name="android:background">@drawable/line</item>
     </style>
 
     <style name="line_horizontal_margin_style">
@@ -139,13 +160,19 @@
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:background">#59000000</item>
+        <item name="android:background">@drawable/line</item>
     </style>
 
     <style name="line_vertical_style">
         <item name="android:layout_width">0.5dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">#59000000</item>
+        <item name="android:background">@drawable/line</item>
+    </style>
+
+    <style name="line_vertical_20_style">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:background">@color/colorGrey</item>
     </style>
 
     <!--=====================================================================-->
@@ -184,7 +211,7 @@
     <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 
     <style name="ActionButton.Overflow.Menu" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_format_list_bulleted_black_24dp</item>
+        <item name="android:src">@drawable/ic_format_list_bullet_black_24dp</item>
     </style>
 
     <!--把该属性改为false即可使menu位置位于toolbar之下-->

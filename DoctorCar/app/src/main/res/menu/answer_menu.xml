@@ -6,7 +6,10 @@
     <item
         android:id="@+id/answer_menu_share"
         android:title="分享"
-        app:actionViewClass="android.widget.TextView"
+        android:icon="@drawable/ic_share_black_24dp"
         app:showAsAction="ifRoom"
        />
+
+    <!--app:actionViewClass="android.widget.TextView"-->
+    <!--app:showAsAction="ifRoom"-->
 </menu>

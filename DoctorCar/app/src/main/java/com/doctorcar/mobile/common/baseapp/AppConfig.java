@@ -2,6 +2,7 @@ package com.doctorcar.mobile.common.baseapp;
 
 
 import android.content.Context;
+import android.content.res.Resources;
 
 /**
  * ************************************************************************
@@ -53,5 +54,9 @@ public class AppConfig {
 
     public static void setContext(Context context) {
         AppConfig.context = context;
+    }
+
+    public static Resources getResource(){
+        return context.getResources();
     }
 }

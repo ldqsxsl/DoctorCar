@@ -27,7 +27,7 @@ public class BrandModel implements BrandContract.Model {
         return Api.getDefault(HostType.GET_BRAND_LIST).getBrandModel(Api.getCacheControl()).map(new Func1<BaseRespose<BrandModelBean>, BrandModelBean>() {
             @Override
             public BrandModelBean call(BaseRespose<BrandModelBean> brandModelBeanBaseRespose) {
-                TLUtil.showLog(brandModelBeanBaseRespose.toString() + "----------------");
+
                 return brandModelBeanBaseRespose.data;
             }
         }).compose(RxSchedulers.<BrandModelBean>io_main());

@@ -63,12 +63,16 @@ public class AskAlreadyFragment extends BaseFragment<AskGetPresenter,AskGetModel
         askAlreadyAdapter.setOnRecyclerViewListener(this);
 
         askAlreadyFgSrl.setOnRefreshListener(mOnRefreshListener);
+
         askAlreadyFgRv.setLayoutManager(new LinearLayoutManager(getActivity()));// 布局管理器。
         askAlreadyFgRv.setHasFixedSize(true);// 如果Item够简单，高度是确定的，打开FixSize将提高性能。
         askAlreadyFgRv.setItemAnimator(new DefaultItemAnimator());// 设置Item默认动画，加也行，不加也行。
+
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(),R.drawable.line));
         askAlreadyFgRv.addItemDecoration(dividerItemDecoration);// 添加分割线。
+
+
         // 添加滚动监听。
         askAlreadyFgRv.addOnScrollListener(mOnScrollListener);
         askAlreadyFgRv.setAdapter(askAlreadyAdapter);

@@ -2,27 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/a1"
+        android:id="@+id/add_split_line_menu"
         android:visible="true"
+        android:icon="@drawable/ic_split_line_black_24dp"
         android:alphabeticShortcut="n"
-        android:title="专题"
+        android:title="添加分割线"
        />
 
     <item
-        android:id="@+id/a2"
+        android:id="@+id/add_link_menu"
         android:visible="true"
+        android:icon="@drawable/ic_link_black_24dp"
         android:alphabeticShortcut="@string/app_name"
-        android:title="精选"/>
+        android:title="添加链接"/>
 
-    <item
-        android:id="@+id/a3"
-        android:visible="true"
-        android:alphabeticShortcut="n"
-        android:title="添加"/>
 
-    <item
-        android:id="@+id/a4"
-        android:visible="true"
-        android:alphabeticShortcut="n"
-        android:title="删除"/>
 </menu>

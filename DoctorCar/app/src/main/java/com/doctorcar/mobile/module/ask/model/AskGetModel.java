@@ -22,7 +22,6 @@ public class AskGetModel implements AskGetContract.Model{
         return Api.getDefault(HostType.GET_PROBLEM_LIST).getProblem(page,page_size).map(new Func1<BaseRespose<ProblemResult>, ProblemResult>() {
             @Override
             public ProblemResult call(BaseRespose<ProblemResult> objectBaseRespose) {
-                TLUtil.showLog(JSON.toJSONString(objectBaseRespose));
                 return objectBaseRespose.data;
             }
         }).compose(RxSchedulers.<ProblemResult>io_main());

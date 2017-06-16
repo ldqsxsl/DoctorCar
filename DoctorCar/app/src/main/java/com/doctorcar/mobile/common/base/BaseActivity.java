@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.doctorcar.mobile.BuildConfig;
 import com.doctorcar.mobile.R;
 import com.doctorcar.mobile.common.baseapp.AppManager;
 import com.doctorcar.mobile.common.baserx.RxManager;
@@ -21,6 +23,7 @@ import com.doctorcar.mobile.common.daynightmodeutils.ChangeModeController;
 import com.doctorcar.mobile.common.widget.LoadingDialog;
 import com.doctorcar.mobile.common.widget.StatusBarCompat;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 
@@ -259,13 +262,30 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public void showNetErrorTip(String error) {
         ToastUitl.showToastWithImg(error,R.mipmap.ic_wifi_off);
     }
+
+    /**
+     * 通用findViewById,减少重复的类型转换
+     * @param view
+     * @param id
+     * @param <E>
+     * @return
+     */
+    public  <E extends View> E getView(View view,int id) {
+        try {
+            return (E) view.findViewById(id);
+        } catch (ClassCastException ex) {
+            Log.e("", "Could not cast View to concrete class.", ex);
+            throw ex;
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         //debug版本不统计crash
 //        if(!BuildConfig.LOG_DEBUG) {
-//            //友盟统计
-//            MobclickAgent.onResume(this);
+            //友盟统计
+            MobclickAgent.onResume(this);
 //        }
     }
 
@@ -274,8 +294,8 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         super.onPause();
         //debug版本不统计crash
 //        if(!BuildConfig.LOG_DEBUG) {
-//            //友盟统计
-//            MobclickAgent.onPause(this);
+            //友盟统计
+            MobclickAgent.onPause(this);
 //        }
     }
 
@@ -286,7 +306,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         if (mPresenter != null)
             mPresenter.onDestroy();
         mRxManager.clear();
-//        ButterKnife..unbind(this);
+//        ButterKnife.unbind(this);
         AppManager.getAppManager().finishActivity(this);
     }
 }

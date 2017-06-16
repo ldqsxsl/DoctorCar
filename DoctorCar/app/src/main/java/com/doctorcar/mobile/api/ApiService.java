@@ -10,6 +10,7 @@ import com.doctorcar.mobile.module.ask.bean.AnswerCommentResult;
 import com.doctorcar.mobile.module.ask.bean.AnswerResult;
 import com.doctorcar.mobile.module.ask.bean.BrandModelBean;
 import com.doctorcar.mobile.module.ask.bean.ProblemResult;
+import com.doctorcar.mobile.module.blog.bean.ArticleResult;
 import com.doctorcar.mobile.module.register.bean.RegisterResult;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Map;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -55,6 +57,12 @@ public interface ApiService {
             @Query("page_size") Integer page_size
     );
 
+    @GET("getMyProblemList")
+    Observable<BaseRespose<ProblemResult>> getMyProblemList(
+            @Query("user_id") String user_id
+    );
+
+
     @FormUrlEncoded
     @POST("addProblem")
     Observable<BaseRespose<Object>> submitAsk(
@@ -73,9 +81,58 @@ public interface ApiService {
 
     @GET("getAnswer")
     Observable<BaseRespose<AnswerResult>> getAnswer(
+            @Query("user_id") String user_id,
             @Query("problem_id") Integer problem_id,
             @Query("page") Integer page,
             @Query("page_size") Integer page_size
+    );
+
+    //问题添加关注
+    @GET("addProblemFocus")
+    Observable<BaseRespose<Object>> addProblemFocus(
+            @Query("user_id") String user_id,
+            @Query("problem_id") Integer problem_id
+    );
+
+    //问题取消关注
+
+    @GET("deleteProblemFocus")
+    Observable<BaseRespose<Object>> deleteProblemFocus(
+            @Query("user_id") String user_id,
+            @Query("problem_id") Integer problem_id
+    );
+
+    @GET("getMyFocusProblemPageList")
+    Observable<BaseRespose<ProblemResult>> getMyFocusProblemPageList(
+            @Query("user_id") String user_id,
+            @Query("page") Integer page,
+            @Query("page_size") Integer page_size
+    );
+
+    @GET("getNoSolveProblemPageList")
+    Observable<BaseRespose<ProblemResult>> getNoSolveProblemPageList(
+            @Query("page") Integer page
+    );
+
+    //关注一个人
+
+    //取消关注人
+
+
+    // 给回答 回答的人点赞
+    @GET("addAnswerPraise")
+    Observable<BaseRespose<Object>> addAnswerPraise(
+            @Query("answer_id") Integer answer_id,
+            @Query("answer_user_id") String answer_user_id,
+            @Query("praise_user_id") String praise_user_id,
+            @Query("problem_id") Integer problem_id
+    );
+
+    //取消给回答 和回的人点赞
+    @GET("deleteAnswerPraise")
+    Observable<BaseRespose<Object>> deleteAnswerPraise(
+            @Query("answer_id") Integer answer_id,
+            @Query("praise_user_id") String praise_user_id
     );
 
     @FormUrlEncoded
@@ -92,6 +149,43 @@ public interface ApiService {
             @Query("page_size") Integer page_size
     );
 
+    @GET("getMyAnswer")
+    Observable<BaseRespose<AnswerCommentResult>> getMyAnswer(
+            @Query("problem_id") Integer problem_id,
+            @Query("user_id") String user_id
+    );
+
+    @FormUrlEncoded
+    @POST("addArticle")
+    Observable<BaseRespose<Object>> addArticle(
+            @Field("user_id") String user_id,
+            @Field("article_title")String article_title,
+            @Field("article_content")String article_content,
+            @Field("article_privacy")String article_privacy
+    );
+
+    @DELETE("deleteArticle")
+    Observable<BaseRespose<Object>> deleteArticle(
+            @Query("article_id")Integer article_id
+    );
+
+    @GET("getArticleList")
+    Observable<BaseRespose<ArticleResult>> getArticleList(
+            @Query("user_id") String user_id,
+            @Query("page") Integer page,
+            @Query("page_size") Integer page_size
+    );
+
+    @GET("getSelectArticleList")
+    Observable<BaseRespose<ArticleResult>> getSelectArticleList(
+            @Query("page") Integer page
+    );
+
+    @FormUrlEncoded
+    @POST("addFeedback")
+    Observable<BaseRespose<Object>> addFeedback(
+            @Field("user_id") String user_id,
+            @Field("feedback_content") String content);
 
 
     @Multipart

@@ -37,13 +37,17 @@ public class ApiConstants {
     public static final String URL2 = "http://192.168.20.87:8080/doctorcar/file/";
     public static final String URL3 = "http://192.168.20.87:8080/doctorcar/problem/";
 
-    private static String BASE_URL = "http://192.168.20.87:8080/doctorcar/" ;
+    private static String BASE_URL = "http://192.168.1.145:8080/doctorcar/" ;
     private static String USER_URL = BASE_URL + "user/";
     private static String BRAND_URL = BASE_URL + "brand/";
     private static String FILE_URL = BASE_URL + "file/";
     private static String PROBLEM_URL = BASE_URL + "problem/";
     private static String ANSWER_URL = BASE_URL + "answer/";
     private static String COMMENT_ANSWER_URL = BASE_URL + "answercomment/";
+    private static String FOCUS_URL = BASE_URL +"focus/";
+    private static String ARTICLE_URL = BASE_URL +"article/";
+    private static String PRAISE_URL = BASE_URL +"praise/";
+    private static String FEEDBACK_URL = BASE_URL +"feedback/";
 
 
 
@@ -220,6 +224,42 @@ public class ApiConstants {
                 break;
             case HostType.GET_COMMENT_ANSWER_LIST:
                 host = COMMENT_ANSWER_URL;
+                break;
+            case HostType.FOCUS:
+                host = FOCUS_URL;
+                break;
+            case HostType.ADD_ARTICLE:
+                host= ARTICLE_URL;
+                break;
+            case HostType.GET_ARTICLE_LIST:
+                host =ARTICLE_URL;
+                break;
+            case HostType.DELETE_ARTICLE:
+                host =ARTICLE_URL;
+                break;
+            case HostType.GET_MY_PROBLEM_LIST:
+                host = PROBLEM_URL;
+                break;
+            case HostType.ADD_ANSWER_PRAISE:
+                host = PRAISE_URL;
+                break;
+            case HostType.DELETE_ANSWER_PRAISE:
+                host = PRAISE_URL;
+                break;
+            case HostType.GET_MY_ANSWER:
+                host = ANSWER_URL;
+                break;
+            case HostType.GET_MY_FOCUS_PROBLEM_PAGE_LIST:
+                host =PROBLEM_URL;
+                break;
+            case HostType.GET_NO_SOLVE_PROBLEM_PAGE_LIST:
+                host =PROBLEM_URL;
+                break;
+            case HostType.ADD_FEEDBACK:
+                host = FEEDBACK_URL;
+                break;
+            case HostType.GET_SELECT_BLOG_LIST:
+                host = ARTICLE_URL;
                 break;
             default:
                 host = "";

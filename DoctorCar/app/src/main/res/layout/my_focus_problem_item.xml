@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/recyclerview_item_bg"
+    android:gravity="center_vertical"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/my_focus_problem_item_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/car_brand_dazhong" />
+
+        <TextView
+            android:id="@+id/my_focus_problem_item_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/my_focus_problem_item_iv"
+            android:text="八天虎" />
+
+        <TextView
+            android:id="@+id/my_focus_problem_item_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/my_focus_problem_item_name_tv"
+            android:text="(技术中心主管)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="12sp"
+            android:layout_toRightOf="@+id/my_focus_problem_item_description_tv"
+            android:text="回答了该问题" />
+
+        <TextView
+            android:id="@+id/my_focus_problem_item_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="2017年2月23日" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/my_focus_problem_item_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="我的发动机坏了怎么办?" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/my_focus_problem_item_praise_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="12sp"
+            android:text="27赞" />
+        <TextView
+            android:id="@+id/dot1"
+            android:layout_toRightOf="@+id/my_focus_problem_item_praise_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="12sp"
+            android:text="." />
+
+        <TextView
+            android:layout_toRightOf="@+id/dot1"
+            android:id="@+id/my_focus_problem_item_is_solve_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="12sp"
+            android:text="已经解决" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:text="颠三倒四" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

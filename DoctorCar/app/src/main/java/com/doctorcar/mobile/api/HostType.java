@@ -44,6 +44,31 @@ public class HostType {
 
     public static  final int GET_COMMENT_ANSWER_LIST = 14;
 
+    public static final int FOCUS = 15;
+
+    public static final int ADD_ARTICLE = 16;
+
+    public static final int GET_ARTICLE_LIST =17;
+
+    public static final int GET_MY_PROBLEM_LIST = 18;
+
+    public static final int DELETE_ARTICLE = 19;
+
+    public static final int ADD_ANSWER_PRAISE = 20;
+
+    public static final int DELETE_ANSWER_PRAISE = 21;
+
+    public static final int GET_MY_ANSWER = 22;
+
+    public static  final int GET_MY_FOCUS_PROBLEM_PAGE_LIST = 23;
+
+    public static final int GET_NO_SOLVE_PROBLEM_PAGE_LIST = 24;
+
+    public static final int ADD_FEEDBACK = 25;
+
+    public static final int GET_SELECT_BLOG_LIST = 26;
+
+
     /**
      * 网易新闻视频的host
      */

@@ -5,7 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/DoctorCar.iml" filepath="$PROJECT_DIR$/DoctorCar.iml" />
       <module fileurl="file://$PROJECT_DIR$/ahbottomnavigation/ahbottomnavigation.iml" filepath="$PROJECT_DIR$/ahbottomnavigation/ahbottomnavigation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/banner/banner.iml" filepath="$PROJECT_DIR$/banner/banner.iml" />
       <module fileurl="file://$PROJECT_DIR$/choiceimage/choiceimage.iml" filepath="$PROJECT_DIR$/choiceimage/choiceimage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/progress_button/progress_button.iml" filepath="$PROJECT_DIR$/progress_button/progress_button.iml" />
+      <module fileurl="file://$PROJECT_DIR$/richeditor/richeditor.iml" filepath="$PROJECT_DIR$/richeditor/richeditor.iml" />
     </modules>
   </component>
 </project>

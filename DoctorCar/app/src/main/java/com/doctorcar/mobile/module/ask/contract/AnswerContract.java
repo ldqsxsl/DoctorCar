@@ -19,17 +19,29 @@ import rx.Observable;
 public interface AnswerContract {
     interface Model extends BaseModel {
         Observable<Object> submitAnswer(String user_id, Integer problem_id, String answer_content);
-        Observable<AnswerResult> getAnswerList(Integer problem_id,Integer page, Integer page_size);
+        Observable<Object> addProblemFocus(String user_id, Integer problem_id);
+        Observable<Object> deleteProblemFocus(String user_id, Integer problem_id);
+        Observable<Object> addAnswerPraise(Integer answer_id ,String answer_user_id,String praise_user_id,Integer problem_id);
+        Observable<Object> deleteAnswerPraise(Integer answer_id,String praise_user_id);
+        Observable<AnswerResult> getAnswerList(String user_id,Integer problem_id,Integer page, Integer page_size);
     }
 
     interface View extends BaseView {
         void returnAnswerData(Object object);
+        void returnAddProblemFocus(Object object);
+        void returnDeleteProblemFocus(Object object);
+        void returnAddAnswerPraise(Object object);
+        void returnDeleteAnswerPraise(Object object);
         void returnAnswerListData(AnswerResult answerResult);
     }
 
     abstract static class Presenter extends BasePresenter<AnswerContract.View, AnswerContract.Model> {
         public abstract void submitAnswerRequest(String user_id, Integer problem_id, String answer_content);
-        public abstract void getAnswerRequest(Integer problem_id,Integer page, Integer page_size);
+        public abstract void addProblemFocusRequest(String user_id, Integer problem_id);
+        public abstract void deleteProblemFocusRequest(String user_id, Integer problem_id);
+        public abstract void getAnswerRequest(String user_id,Integer problem_id,Integer page, Integer page_size);
+        public abstract void addAnswerPraiseRequest(Integer answer_id ,String answer_user_id,String praise_user_id,Integer problem_id);
+        public abstract void deleteAnswerPraiseRequest(Integer answer_id,String praise_user_id);
     }
 
 }

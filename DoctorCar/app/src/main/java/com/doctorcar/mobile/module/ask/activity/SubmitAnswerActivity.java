@@ -91,6 +91,7 @@ public class SubmitAnswerActivity extends BaseActivity<AnswerPresenter, AnswerMo
         if (problemBean != null)
             problem_id = problemBean.getProblem_id();
         String str = SPUtils.getParams("user","");
+        TLUtil.showLog("  oooooooo11111111111ooooooooo");
         if (!TextUtils.isEmpty(str)){
             User user = JSON.parseObject(str,User.class);
             if (user != null){
@@ -104,16 +105,38 @@ public class SubmitAnswerActivity extends BaseActivity<AnswerPresenter, AnswerMo
             }else {
                 startActivity(LoginActivity.class);
             }
+        }else{
+            startActivity(LoginActivity.class);
         }
     }
 
     @Override
     public void returnAnswerData(Object object) {
-
+        finish();
     }
 
     @Override
     public void returnAnswerListData(AnswerResult answerResult) {
+
+    }
+
+    @Override
+    public void returnAddProblemFocus(Object object) {
+
+    }
+
+    @Override
+    public void returnDeleteProblemFocus(Object object) {
+
+    }
+
+    @Override
+    public void returnAddAnswerPraise(Object object) {
+
+    }
+
+    @Override
+    public void returnDeleteAnswerPraise(Object object) {
 
     }
 

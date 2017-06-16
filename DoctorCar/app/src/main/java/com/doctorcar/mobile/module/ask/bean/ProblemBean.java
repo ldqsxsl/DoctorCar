@@ -18,6 +18,8 @@ public class ProblemBean implements Serializable{
     private Integer brand_id;
     private Integer model_id;
     private String user_id;
+    private String problem_status;//问提 0 没被解决 1 被解决
+    private Integer accept_answer_id;
     private List<ImageBean> list_image;
 
     public Integer getProblem_id() {
@@ -90,5 +92,21 @@ public class ProblemBean implements Serializable{
 
     public void setList_image(List<ImageBean> list_image) {
         this.list_image = list_image;
+    }
+
+    public String getProblem_status() {
+        return problem_status;
+    }
+
+    public void setProblem_status(String problem_status) {
+        this.problem_status = problem_status;
+    }
+
+    public Integer getAccept_answer_id() {
+        return accept_answer_id;
+    }
+
+    public void setAccept_answer_id(Integer accept_answer_id) {
+        this.accept_answer_id = accept_answer_id;
     }
 }

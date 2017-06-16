@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginRight="@dimen/margin_16"
+    android:layout_marginLeft="@dimen/margin_16"
+    android:paddingBottom="@dimen/margin_16"
+    android:paddingTop="@dimen/margin_16"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/my_ask_fg_item_problem_tv"
+        android:text="口袋金佛接受东风金属"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+         />
+
+    <TextView
+        android:id="@+id/my_ask_fg_item_answer_tv"
+        android:text="第三代"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+         />
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/my_ask_fg_item_praise_tv"
+            android:text="1个赞同"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            />
+
+        <TextView
+
+            android:text="."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/my_ask_fg_item_status_tv"
+            android:text="问题为被采纳"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            />
+
+    </LinearLayout>
+</LinearLayout>

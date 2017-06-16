@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/button_black_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <RadioGroup
+        android:id="@+id/praise_layout_rg"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RadioButton
+            android:id="@+id/praise_layout_agreed_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableTop="@drawable/agreed"
+            android:text="点赞"
+            android:drawablePadding="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            />
+
+        <View
+            style="@style/line_vertical_style"
+            />
+        <RadioButton
+            android:id="@+id/praise_layout_oppose_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:button="@null"
+            android:textSize="16sp"
+            android:drawablePadding="5dp"
+            android:text="反对"
+            android:textColor="@color/white"
+            android:drawableTop="@drawable/oppose"
+            />
+    </RadioGroup>
+
+</LinearLayout>

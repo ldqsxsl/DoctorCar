@@ -10,7 +10,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ahbottomnavigation" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/banner" />
             <option value="$PROJECT_DIR$/choiceimage" />
+            <option value="$PROJECT_DIR$/progress_button" />
+            <option value="$PROJECT_DIR$/richeditor" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

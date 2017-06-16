@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@color/colorWhite"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
         <TextView
+            android:id="@+id/answer_comment_header_layout_problem_tv"
             android:textSize="16sp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textStyle="bold"
-            android:text="我们青年人的箴言就是要勇敢顽强鉴定"
+            android:text=""
             android:layout_centerVertical="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -24,25 +27,27 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+
         android:gravity="center_vertical">
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/answer_comment_header_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/car_brand_dazhong" />
 
-            android:background="@mipmap/ic_launcher"
-            android:id="@+id/answer_comment_header_iv" />
 
         <TextView
             android:layout_toRightOf="@+id/answer_comment_header_iv"
             android:id="@+id/answer_comment_header_name_tv"
             android:text="TextView"
             android:textSize="16sp"
-
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -52,33 +57,34 @@
             android:id="@+id/answer_comment_header_description_tv"
             android:text="TextView"
             android:textSize="16sp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
-        <TextView
-            android:layout_alignParentRight="true"
-            android:id="@+id/answer_comment_header_time_tv"
-            android:text="TextView"
-            android:textSize="16sp"
+        <!--<TextView-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:id="@+id/answer_comment_header_time_tv"-->
+            <!--android:text="TextView"-->
+            <!--android:textSize="16sp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
 
-            android:layout_marginRight="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:id="@+id/answer_comment_header_content_tv"
-            android:layout_alignLeft="@+id/answer_comment_header_name_tv"
-            android:layout_below="@+id/answer_comment_header_name_tv"
-            android:text="wews"
-            android:textSize="16sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+        <!--<TextView-->
+            <!--android:id="@+id/answer_comment_header_content_tv"-->
+            <!--android:layout_alignLeft="@+id/answer_comment_header_name_tv"-->
+            <!--android:layout_below="@+id/answer_comment_header_name_tv"-->
+            <!--android:text="wews"-->
+            <!--android:textSize="16sp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
 
     </RelativeLayout>
     <View style="@style/line_horizontal_style"/>
@@ -89,6 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/answer_comment_header_layout_content_tv"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:textSize="16sp"
@@ -103,6 +110,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/answer_comment_header_layout_time_tv"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:textSize="16sp"
@@ -118,13 +126,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_marginRight="16dp"
+            android:id="@+id/answer_comment_header_layout_praise_tv"
+            android:layout_marginRight="6dp"
             android:layout_marginLeft="16dp"
-            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/iv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="赞同"/>
+            android:text="0"/>
+
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_fx_zan"/>
     </RelativeLayout>
 
     <View style="@style/line_horizontal_height_style"/>

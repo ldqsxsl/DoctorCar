@@ -1,5 +1,6 @@
 package com.doctorcar.mobile.module.ask.activity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -25,6 +26,7 @@ import com.doctorcar.mobile.module.ask.adapter.AnswerCommentAdapter;
 import com.doctorcar.mobile.module.ask.bean.AnswerBean;
 import com.doctorcar.mobile.module.ask.bean.AnswerCommentBean;
 import com.doctorcar.mobile.module.ask.bean.AnswerCommentResult;
+import com.doctorcar.mobile.module.ask.bean.ProblemBean;
 import com.doctorcar.mobile.module.ask.contract.AnswerCommentContract;
 import com.doctorcar.mobile.module.ask.model.AnswerCommentModel;
 import com.doctorcar.mobile.module.ask.presenter.AnswerCommentPresenter;
@@ -32,6 +34,10 @@ import com.doctorcar.mobile.module.login.activity.LoginActivity;
 import com.doctorcar.mobile.utils.ListUtils;
 import com.doctorcar.mobile.utils.SPUtils;
 import com.doctorcar.mobile.utils.TLUtil;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,15 +63,17 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
     @BindView(R.id.answer_comment_content_et)
     EditText answerCommentContentEt;
     @BindView(R.id.answer_comment_submit_bt)
-    Button answerCommentSubmitBt;
+    TextView answerCommentSubmitBt;
 
     private AnswerBean answerBean;
+    private ProblemBean problemBean;
 
     private AnswerCommentAdapter answerCommentAdapter;
     private List<AnswerCommentBean> answerCommentBeenList = new ArrayList<AnswerCommentBean>();
     private Integer page = 0;
     private boolean isLoadMore = false;
     private boolean isLastPage = false;
+
 
     @Override
     public int getLayoutId() {
@@ -80,6 +88,8 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
     @Override
     public void initView() {
         answerBean = (AnswerBean) getIntent().getExtras().getSerializable("data");
+        problemBean = (ProblemBean) getIntent().getExtras().getSerializable("data1");
+
         initToolbar();
 
         answerCommentAdapter = new AnswerCommentAdapter(this, answerCommentBeenList);
@@ -94,6 +104,8 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
         answerCommentRv.addItemDecoration(dividerItemDecoration);// 添加分割线。
 
         View header = LayoutInflater.from(this).inflate(R.layout.answer_comment_header_layout, answerCommentRv, false);
+        TextView problemTv = (TextView) header.findViewById(R.id.answer_comment_header_layout_problem_tv);
+        problemTv.setText(problemBean.getProblem_content()+"");
 //        TextView answer = (TextView) header.findViewById(R.id.answer_add_tv);
 //        answer.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -107,7 +119,7 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
         // 添加滚动监听。
         answerCommentRv.addOnScrollListener(mOnScrollListener);
         answerCommentRv.setAdapter(answerCommentAdapter);
-        mPresenter.getCommentAnswerRequest(answerBean.getAnswer_id(),0, 5);
+        mPresenter.getCommentAnswerRequest(answerBean.getAnswer_id(), 0, 5);
     }
 
     /**
@@ -122,7 +134,7 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
                     isLoadMore = false;
                     isLastPage = false;
                     page = 0;
-                    mPresenter.getCommentAnswerRequest(answerBean.getAnswer_id(),page, 5);
+                    mPresenter.getCommentAnswerRequest(answerBean.getAnswer_id(), page, 5);
                 }
             }, 2000);
         }
@@ -136,7 +148,7 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             if (!recyclerView.canScrollVertically(1) && !isLastPage) {// 手指不能向上滑动了
                 // TODO 这里有个注意的地方，如果你刚进来时没有数据，但是设置了适配器，这个时候就会触发加载更多，需要开发者判断下是否有数据，如果有数据才去加载更多。
-                mPresenter.getCommentAnswerRequest(answerBean.getAnswer_id(),++page, 5);
+                mPresenter.getCommentAnswerRequest(answerBean.getAnswer_id(), ++page, 5);
                 isLoadMore = true;
                 TLUtil.showToast("加载更多");
             }
@@ -144,7 +156,7 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
     };
 
     public void initToolbar() {
-        toolbarTitle.setText("评论(11)");
+        toolbarTitle.setText("评论("+ answerBean.getAnswer_comment_number()+")");
         toolbar.inflateMenu(R.menu.answer_menu);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_navigate_before_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -219,27 +231,29 @@ public class AnswerCommentActivity extends BaseActivity<AnswerCommentPresenter, 
         submitCommentAnswer();
     }
 
-    public void submitCommentAnswer(){
+    public void submitCommentAnswer() {
         String content = answerCommentContentEt.getText().toString().trim();
 
         Integer answer_id = -1;
         if (answerBean != null)
             answer_id = answerBean.getAnswer_id();
-        String str = SPUtils.getParams("user","");
-        if (!TextUtils.isEmpty(str)){
-            User user = JSON.parseObject(str,User.class);
-            if (user != null){
-                if (TextUtils.isEmpty(content)){
+        String str = SPUtils.getParams("user", "");
+        if (!TextUtils.isEmpty(str)) {
+            User user = JSON.parseObject(str, User.class);
+            if (user != null) {
+                if (TextUtils.isEmpty(content)) {
                     TLUtil.showToast("请输入内容");
-                }else{
-                    mPresenter.submitAnswerCommentRequest(answer_id,user.getUser_id(),content);
+                } else {
+                    mPresenter.submitAnswerCommentRequest(answer_id, user.getUser_id(), content);
                 }
 
-            }else {
+            } else {
                 startActivity(LoginActivity.class);
             }
         }
 
 
     }
+
+
 }

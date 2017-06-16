@@ -126,7 +126,7 @@ public class TimeUtil {
         if (timeStamp == 0) {
             return "";
         }
-        timeStamp = timeStamp * 1000;
+//        timeStamp = timeStamp * 1000;
         SimpleDateFormat format = new SimpleDateFormat(dataFormat);
         return format.format(new Date(timeStamp));
     }

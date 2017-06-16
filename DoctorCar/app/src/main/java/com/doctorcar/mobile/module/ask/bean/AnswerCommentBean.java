@@ -17,6 +17,9 @@ public class AnswerCommentBean implements Serializable{
     private String comment_answer_content;
 
     private String comment_answer_time;
+    private String user_phone;
+    private String user_description;
+    private String user_image;
 
     public Integer getComment_answer_id() {
         return comment_answer_id;
@@ -56,5 +59,29 @@ public class AnswerCommentBean implements Serializable{
 
     public void setComment_answer_time(String comment_answer_time) {
         this.comment_answer_time = comment_answer_time;
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone;
+    }
+
+    public String getUser_description() {
+        return user_description;
+    }
+
+    public void setUser_description(String user_description) {
+        this.user_description = user_description;
+    }
+
+    public String getUser_image() {
+        return user_image;
+    }
+
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
     }
 }

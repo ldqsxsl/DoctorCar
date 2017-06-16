@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/a1"
+        android:visible="true"
+        android:icon="@drawable/ic_lock_black_24dp"
+        android:alphabeticShortcut="n"
+        android:title="保存为私密文章"
+        />
+
+    <item
+        android:id="@+id/a2"
+        android:visible="true"
+        android:icon="@drawable/ic_local_library_black_24dp"
+        android:alphabeticShortcut="@string/app_name"
+        android:title="专题设置"/>
+
+</menu>

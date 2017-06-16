@@ -31,14 +31,23 @@ import com.doctorcar.mobile.bean.User;
 import com.doctorcar.mobile.common.commonutils.ImageLoaderUtils;
 import com.doctorcar.mobile.module.ask.activity.AskActivity;
 import com.doctorcar.mobile.module.ask.activity.AskAlreadyFragment;
+import com.doctorcar.mobile.module.ask.activity.MyAskFragment;
+import com.doctorcar.mobile.module.ask.activity.MyFocusProblemFragment;
+import com.doctorcar.mobile.module.ask.activity.WaitSolveFragment;
 import com.doctorcar.mobile.module.ask.fragment.FragmentTab1;
 import com.doctorcar.mobile.module.ask.fragment.FragmentTab2;
 import com.doctorcar.mobile.module.ask.fragment.FragmentTab3;
 import com.doctorcar.mobile.module.ask.fragment.FragmentTab4;
 import com.doctorcar.mobile.module.ask.adapter.FragmentAdapter;
+import com.doctorcar.mobile.module.blog.activity.WriteBlogActivity;
+import com.doctorcar.mobile.module.blog.fragment.DraftBoxFragment;
+import com.doctorcar.mobile.module.blog.fragment.MineArticlesFragment;
 import com.doctorcar.mobile.module.login.activity.LoginActivity;
+import com.doctorcar.mobile.module.mine.activity.AboutUsActivity;
+import com.doctorcar.mobile.module.mine.activity.FeedbackActivity;
 import com.doctorcar.mobile.utils.SPUtils;
 import com.doctorcar.mobile.utils.TLUtil;
+import com.doctorcar.mobile.utils.UserUtils;
 import com.doctorcar.mobile.view.layout.EasyIndicator;
 
 import java.util.ArrayList;
@@ -104,11 +113,16 @@ public class DemoFragment extends Fragment {
             });
             EasyIndicator easyIndicator = (EasyIndicator) view.findViewById(R.id.ask_fg_easy_indicator);
             ViewPager viewPager = (ViewPager) view.findViewById(R.id.ask_fg_view_pager);
-            easyIndicator.setTabTitles(new String[]{"已解决", "待解决","我的问答"});
+            easyIndicator.setTabTitles(new String[]{"已解决", "待解决","我的关注", "我的问答"});
+            easyIndicator.setOnTabClickListener(new EasyIndicator.onTabClickListener() {
+                @Override
+                public void onTabClick(String title, int position) {
 
+                }
+            });
             // 自定义设置
             easyIndicator.setViewPage(viewPager, new FragmentAdapter(getFragmentManager(),
-                    new Fragment[]{new AskAlreadyFragment(), new FragmentTab2(), new FragmentTab2()}));
+                    new Fragment[]{new AskAlreadyFragment(), new WaitSolveFragment(),new MyFocusProblemFragment(), new MyAskFragment()}));
 
 //			initDemoList(view);
             return view;
@@ -118,30 +132,55 @@ public class DemoFragment extends Fragment {
 //            initView(view);
 //            initData();
             return view;
-        } else if(arguments == 3){
+        } else if (arguments == 3) {
             View view = inflater.inflate(R.layout.friend_fragment, container, false);
             initFriendView(view);
             return view;
-        }else {
+        } else {
             View view = inflater.inflate(R.layout.my_fragment, container, false);
             initDemoMine(view);
             return view;
         }
     }
 
-    public void initBlogView(View view){
+    public void initBlogView(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         TextView title = (TextView) view.findViewById(R.id.toolbar_title);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.floating_action_button);
         title.setText("Blog");
+
+        toolbar.inflateMenu(R.menu.menu_toolbar);
+        toolbar.setNavigationIcon(R.color.transparent);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), WriteBlogActivity.class));
+            }
+        });
+        EasyIndicator easyIndicator = (EasyIndicator) view.findViewById(R.id.blog_fg_easy_indicator);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.blog_fg_view_pager);
+        easyIndicator.setOnTabClickListener(new EasyIndicator.onTabClickListener() {
+            @Override
+            public void onTabClick(String title, int position) {
+
+            }
+        });
+        easyIndicator.setTabTitles(new String[]{"我的文章", "草稿箱"});
+
+        // 自定义设置
+        easyIndicator.setViewPage(viewPager, new FragmentAdapter(getFragmentManager(),
+                new Fragment[]{new MineArticlesFragment(), new DraftBoxFragment()}));
+
+
     }
 
-    public void initFriendView(View view){
+    public void initFriendView(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         TextView title = (TextView) view.findViewById(R.id.toolbar_title);
         title.setText("Friend");
     }
 
-    public void initHomeView(View view){
+    public void initHomeView(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         TextView title = (TextView) view.findViewById(R.id.toolbar_title);
         EasyIndicator easyIndicator = (EasyIndicator) view.findViewById(R.id.home_fg_easy_indicator);
@@ -151,7 +190,12 @@ public class DemoFragment extends Fragment {
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.home_fg_view_pager);
         easyIndicator.setTabTitles(new String[]{"技术博客", "汽车资讯", "技术问答", "案例分享"});
+        easyIndicator.setOnTabClickListener(new EasyIndicator.onTabClickListener() {
+            @Override
+            public void onTabClick(String title, int position) {
 
+            }
+        });
         // 自定义设置
         easyIndicator.setViewPage(viewPager, new FragmentAdapter(getFragmentManager(),
                 new Fragment[]{new FragmentTab1(), new FragmentTab2(),
@@ -413,7 +457,7 @@ public class DemoFragment extends Fragment {
 
     private void initDemoMine(View view) {
         final Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        final TextView title= (TextView) view.findViewById(R.id.toolbar_title);
+        final TextView title = (TextView) view.findViewById(R.id.toolbar_title);
         toolbar.setNavigationIcon(R.color.transparent);
         toolbar.inflateMenu(R.menu.toobar);
         AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.appbar);
@@ -422,18 +466,18 @@ public class DemoFragment extends Fragment {
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
                 Log.d("STATE", state.name());
                 TextView textView = (TextView) toolbar.getMenu().getItem(0).getActionView();
-                if( state == State.EXPANDED ) {
+                if (state == State.EXPANDED) {
                     textView.setBackgroundResource(R.drawable.ic_equalizer_black_24dp);
-                    textView.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-                    toolbar.setOverflowIcon(ContextCompat.getDrawable(getActivity(),R.drawable.ic_notifications_none_white_24dp));
-                    title.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                    textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                    toolbar.setOverflowIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_notifications_none_white_24dp));
+                    title.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
                     //展开状态
-                }else if(state == State.COLLAPSED){
-                    toolbar.setOverflowIcon(ContextCompat.getDrawable(getActivity(),R.drawable.ic_notifications_none_black_24dp));
-                    title.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
+                } else if (state == State.COLLAPSED) {
+                    toolbar.setOverflowIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_notifications_none_black_24dp));
+                    title.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
                     textView.setBackgroundResource(R.drawable.ic_equalizer_black_24dp);
                     //折叠状态
-                }else {
+                } else {
                     //中间状态
                 }
             }
@@ -442,14 +486,12 @@ public class DemoFragment extends Fragment {
         CircleImageView headIv = (CircleImageView) view.findViewById(R.id.my_fg_head_iv);
         TextView headNameTv = (TextView) view.findViewById(R.id.my_fg_head_name_tv);
         TextView headDescriptionTv = (TextView) view.findViewById(R.id.my_fg_head_description_tv);
-        ImageLoaderUtils.display(getActivity(),headIv,"http://192.168.20.87:8080/images/head.jpg");
+        ImageLoaderUtils.display(getActivity(), headIv, "http://192.168.20.87:8080/images/head.jpg");
         TextView signTv = (TextView) view.findViewById(R.id.my_fg_head_sign_tv);
-        String str = SPUtils.getParams("user","");
-        if (!TextUtils.isEmpty(str)){
-            User user = JSON.parseObject(str,User.class);
-            if (user != null){
-                headNameTv.setText(user.getUser_phone());
-            }
+
+        User user = UserUtils.getUser();
+        if (user != null) {
+            headNameTv.setText(user.getUser_phone());
         }
 
         headNameTv.setOnClickListener(new View.OnClickListener() {
@@ -458,6 +500,31 @@ public class DemoFragment extends Fragment {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
+
+
+
+
+        view.findViewById(R.id.my_feedback_rl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), FeedbackActivity.class));
+            }
+        });
+
+        view.findViewById(R.id.my_check_version_rl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TLUtil.showToast("已经是最新版本");
+            }
+        });
+
+        view.findViewById(R.id.my_about_us_rl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AboutUsActivity.class));
+            }
+        });
+
 //		button = (Button) view.findViewById(R.id.popupMenu);
 //		button.setOnClickListener(new View.OnClickListener() {
 //			@Override

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_appbar"/>
+
+
+    <EditText
+        android:id="@+id/feedback_et"
+        android:hint="请写上你宝贵的意见"
+        android:padding="@dimen/margin_16"
+       android:gravity="left|top"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@null"/>
+
+</LinearLayout>

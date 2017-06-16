@@ -1,10 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/title_appbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <include layout="@layout/title_appbar" />
+
+        <com.doctorcar.mobile.view.layout.EasyIndicator
+            android:id="@+id/blog_fg_easy_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:indicator_bottom_height="3dp"
+            app:indicator_bottom_line_color="@color/alpha_05_white"
+            app:indicator_bottom_line_height="1dp"
+            app:indicator_height="42dp"
+            app:indicator_isBottom_line="true"
+            app:indicator_line_color="@color/colorAccent"
+            app:indicator_normal_color="@color/black"
+            app:indicator_selected_color="@color/colorAccent"
+            app:indicator_textSize="16sp"
+            app:indicator_vertical_line_color="@color/alpha_05_white"
+            app:indicator_vertical_line_h="20dp"
+            app:indicator_vertical_line_w="0dp"
+            app:indicator_width="0dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/blog_fg_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_border_color_black_24dp"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="5dp"
+        app:useCompatPadding="true" />
 
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

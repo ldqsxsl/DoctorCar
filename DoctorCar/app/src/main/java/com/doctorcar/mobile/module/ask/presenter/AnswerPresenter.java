@@ -28,8 +28,8 @@ public class AnswerPresenter extends AnswerContract.Presenter{
     }
 
     @Override
-    public void getAnswerRequest(Integer problem_id,Integer page, Integer page_size) {
-        mRxManage.add(mModel.getAnswerList(problem_id,page, page_size).subscribe(new RxSubscriber<AnswerResult>(mContext){
+    public void getAnswerRequest(String user_id,Integer problem_id,Integer page, Integer page_size) {
+        mRxManage.add(mModel.getAnswerList(user_id,problem_id,page, page_size).subscribe(new RxSubscriber<AnswerResult>(mContext){
             @Override
             protected void _onNext(AnswerResult o) {
                 mView.returnAnswerListData(o);
@@ -41,4 +41,68 @@ public class AnswerPresenter extends AnswerContract.Presenter{
             }
         }));
     }
+
+    @Override
+    public void addProblemFocusRequest(String user_id, Integer problem_id) {
+        mRxManage.add(mModel.addProblemFocus(user_id,problem_id).subscribe(new RxSubscriber<Object>(mContext) {
+            @Override
+            protected void _onNext(Object o) {
+                mView.returnAddProblemFocus(o);
+            }
+
+            @Override
+            protected void _onError(String message) {
+                ToastUitl.showToastWithImg(message, R.drawable.ic_apps_black_24dp);
+            }
+        }));
+    }
+
+    @Override
+    public void deleteProblemFocusRequest(String user_id, Integer problem_id) {
+        mRxManage.add(mModel.deleteProblemFocus(user_id,problem_id).subscribe(new RxSubscriber<Object>(mContext) {
+            @Override
+            protected void _onNext(Object o) {
+                mView.returnDeleteProblemFocus(o);
+            }
+
+            @Override
+            protected void _onError(String message) {
+                ToastUitl.showToastWithImg(message, R.drawable.ic_apps_black_24dp);
+
+            }
+        }));
+    }
+
+
+    @Override
+    public void addAnswerPraiseRequest(Integer answer_id, String answer_user_id, String praise_user_id, Integer problem_id) {
+        mRxManage.add(mModel.addAnswerPraise(answer_id, answer_user_id,praise_user_id,problem_id).subscribe(new RxSubscriber<Object>(mContext) {
+            @Override
+            protected void _onNext(Object o) {
+                mView.returnAddAnswerPraise(o);
+            }
+
+            @Override
+            protected void _onError(String message) {
+                ToastUitl.showToastWithImg(message, R.drawable.ic_apps_black_24dp);
+            }
+        }));
+    }
+
+    @Override
+    public void deleteAnswerPraiseRequest(Integer answer_id,String praise_user_id) {
+        mRxManage.add(mModel.deleteAnswerPraise(answer_id,praise_user_id).subscribe(new RxSubscriber<Object>(mContext) {
+            @Override
+            protected void _onNext(Object o) {
+                mView.returnDeleteAnswerPraise(o);
+            }
+
+            @Override
+            protected void _onError(String message) {
+                ToastUitl.showToastWithImg(message, R.drawable.ic_apps_black_24dp);
+            }
+        }));
+
+    }
 }
+

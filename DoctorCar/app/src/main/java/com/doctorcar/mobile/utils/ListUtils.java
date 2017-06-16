@@ -11,4 +11,11 @@ public class ListUtils {
 		return false;
 	}
 
+	public static <T> boolean isListNotNull(List<T>list){
+		if(list != null && list.size() > 0){
+			return true;
+		}
+		return false;
+	}
+
 }

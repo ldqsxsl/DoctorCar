@@ -15,6 +15,7 @@ import com.doctorcar.mobile.common.commonutils.ToastUitl;
 import com.doctorcar.mobile.common.widget.LoadingDialog;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 //import com.jaydenxiao.common.R;
 //import com.jaydenxiao.common.baserx.RxManager;
@@ -67,6 +68,7 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     public T mPresenter;
     public E mModel;
     public RxManager mRxManager;
+    public Unbinder unbinder;
 
     @Nullable
     @Override
@@ -74,7 +76,7 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
         if (rootView == null)
             rootView = inflater.inflate(getLayoutResource(), container, false);
         mRxManager=new RxManager();
-        ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
         mPresenter = TUtil.getT(this, 0);
         mModel= TUtil.getT(this,1);
         if(mPresenter!=null){

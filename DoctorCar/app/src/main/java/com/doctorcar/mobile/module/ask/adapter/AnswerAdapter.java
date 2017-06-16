@@ -5,11 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.doctorcar.mobile.R;
+import com.doctorcar.mobile.common.commonutils.TimeUtil;
 import com.doctorcar.mobile.common.interf.OnItemClickViewListener;
 import com.doctorcar.mobile.module.ask.bean.AnswerBean;
+import com.doctorcar.mobile.utils.TLUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,11 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.mDatas = data;
     }
     private static OnItemClickViewListener onRecyclerViewListener;
+    private PraiseClickListener praiseClickListener;
+
+    public void setPraiseClickListener(PraiseClickListener praiseClickListener) {
+        this.praiseClickListener = praiseClickListener;
+    }
 
     public void setOnRecyclerViewListener(OnItemClickViewListener onRecyclerViewListener) {
         AnswerAdapter.onRecyclerViewListener = onRecyclerViewListener;
@@ -65,6 +74,14 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         final AnswerBean data = mDatas.get(pos);
         if(viewHolder instanceof AnswerAdapter.Holder) {
             ((AnswerAdapter.Holder) viewHolder).text.setText(data.getAnswer_content());
+            ((Holder) viewHolder).praiseNumberTv.setText(data.getAnswer_praise_number()+"");
+            ((Holder) viewHolder).answerCommentNumberTv.setText(data.getAnswer_comment_number()+"评论");
+            if(data.is_my_praise()){
+                ((Holder) viewHolder).praiseIv.setImageResource(R.mipmap.icon_zan);
+            }else{
+                ((Holder) viewHolder).praiseIv.setImageResource(R.mipmap.icon_zan_red);
+            }
+            ((Holder) viewHolder).answerTimeTv.setText(TimeUtil.formatData(TimeUtil.dateFormatYMDofChinese,Long.parseLong(data.getAnswer_time())));
             if(onRecyclerViewListener == null) return;
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,8 +89,18 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     onRecyclerViewListener.onItemClick(pos, data);
                 }
             });
+
+            ((Holder) viewHolder).praiseRl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(praiseClickListener != null){
+                        praiseClickListener.praise(v,data);
+                    }
+                }
+            });
         }
     }
+
     public int getRealPosition(RecyclerView.ViewHolder holder) {
         int position = holder.getLayoutPosition();
         return mHeaderView == null ? position : position - 1;
@@ -84,10 +111,26 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
     class Holder extends RecyclerView.ViewHolder {
         TextView text;
+        TextView praiseNumberTv;
+        TextView answerTimeTv;
+        TextView answerCommentNumberTv;
+        ImageView praiseIv;
+        RelativeLayout praiseRl;
         public Holder(View itemView) {
             super(itemView);
             if(itemView == mHeaderView) return;
+            answerTimeTv = (TextView) itemView.findViewById(R.id.answer_item_time_tv);
             text = (TextView) itemView.findViewById(R.id.answer_item_content_tv);
+            praiseNumberTv = (TextView) itemView.findViewById(R.id.answer_item_praise_number_tv);
+            answerCommentNumberTv = (TextView) itemView.findViewById(R.id.answer_item_comment_number_tv);
+            praiseIv = (ImageView) itemView.findViewById(R.id.answer_item_praise_number_iv);
+
+            praiseRl = (RelativeLayout) itemView.findViewById(R.id.answer_item_praise_rl);
         }
     }
+
+    public static interface PraiseClickListener{
+        void praise(View view,AnswerBean answerBean);
+    }
+
 }

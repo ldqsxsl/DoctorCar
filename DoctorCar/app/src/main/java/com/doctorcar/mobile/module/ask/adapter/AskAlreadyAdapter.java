@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.doctorcar.mobile.R;
 import com.doctorcar.mobile.common.commonutils.ImageLoaderUtils;
+import com.doctorcar.mobile.common.commonutils.TimeUtil;
 import com.doctorcar.mobile.common.interf.OnItemClickViewListener;
 import com.doctorcar.mobile.module.ask.bean.BrandBean;
 import com.doctorcar.mobile.module.ask.bean.ProblemBean;
@@ -18,6 +19,8 @@ import com.doctorcar.mobile.module.ask.bean.ProblemResult;
 import com.doctorcar.mobile.utils.TLUtil;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AskAlreadyAdapter extends RecyclerView.Adapter<AskAlreadyAdapter.ViewHolder> {
 
@@ -49,18 +52,20 @@ public class AskAlreadyAdapter extends RecyclerView.Adapter<AskAlreadyAdapter.Vi
     }
 
     @Override
-    public AskAlreadyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(mInflater.inflate(R.layout.ask_already_item, parent, false));
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new AskAlreadyAdapter.ViewHolder(mInflater.inflate(R.layout.ask_already_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position){
         final ProblemBean problemBean = mDatas.get(position);
-        holder.brandName.setText(problemBean.getProblem_content());
-        holder.content.setTag(R.id.tag,position);
-        ImageLoaderUtils.display(mContext,holder.brandImg,"http://192.168.20.87:8080/images/"+problemBean.getList_image().get(0).getImage_path());
-        TLUtil.showLog("http://192.168.20.87:8080/images/"+problemBean.getList_image().get(0));
-        holder.content.setOnClickListener(new View.OnClickListener() {
+        holder.nameTv.setText(problemBean.getProblem_title());
+        holder.contentTv.setText(problemBean.getProblem_content());
+        holder.timeTv.setText(TimeUtil.formatData(TimeUtil.dateFormatYMDofChinese,Long.parseLong(problemBean.getProblem_time())));
+        ImageLoaderUtils.display(mContext,holder.headTv,"http://192.168.20.87:8080/images/"+problemBean.getList_image().get(0).getImage_path());
+
+
+        holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onRecyclerViewListener != null){
@@ -77,15 +82,19 @@ public class AskAlreadyAdapter extends RecyclerView.Adapter<AskAlreadyAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView brandName;
-        public ImageView brandImg;
-        public LinearLayout content;
+        public TextView nameTv;
+        public TextView contentTv;
+        public TextView timeTv;
+        public CircleImageView headTv;
+        public LinearLayout ll;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            brandName = (TextView) itemView.findViewById(R.id.brand_item_name);
-            brandImg = (ImageView) itemView.findViewById(R.id.brand_item_img);
-            content = (LinearLayout) itemView.findViewById(R.id.content);
+            nameTv = (TextView) itemView.findViewById(R.id.ask_already_item_name_tv);
+            contentTv = (TextView) itemView.findViewById(R.id.ask_already_item_content_tv);
+            headTv = (CircleImageView) itemView.findViewById(R.id.ask_already_item_iv);
+            timeTv = (TextView) itemView.findViewById(R.id.ask_already_item_time_tv);
+            ll = (LinearLayout) itemView.findViewById(R.id.ll);
         }
     }
 }

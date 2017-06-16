@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/color_w_red_menu"
+        android:visible="true"
+        android:icon="@drawable/ic_red"
+        android:alphabeticShortcut="n"
+        android:title="W 红色"
+        />
+
+    <item
+        android:id="@+id/color_w_black_menu"
+        android:visible="true"
+        android:icon="@drawable/ic_black"
+        android:alphabeticShortcut="@string/app_name"
+        android:title="W 黑色"/>
+
+    <item
+        android:id="@+id/color_w_yellow_menu"
+        android:visible="true"
+        android:alphabeticShortcut="n"
+        android:icon="@drawable/ic_yellow"
+        android:title="W 黄色"/>
+
+    <item
+        android:id="@+id/color_w_green_menu"
+        android:visible="true"
+        android:icon="@drawable/ic_green"
+        android:alphabeticShortcut="n"
+        android:title="W 绿色"/>
+
+
+
+    <item
+        android:id="@+id/color_b_red_menu"
+        android:visible="true"
+        android:icon="@drawable/ic_red"
+        android:alphabeticShortcut="n"
+        android:title="B 红色"
+        />
+
+    <item
+        android:id="@+id/color_b_black_menu"
+        android:visible="true"
+        android:icon="@drawable/ic_black"
+        android:alphabeticShortcut="@string/app_name"
+        android:title="B 黑色"/>
+
+    <item
+        android:id="@+id/color_b_yellow_menu"
+        android:visible="true"
+        android:alphabeticShortcut="n"
+        android:icon="@drawable/ic_yellow"
+        android:title="B 黄色"/>
+
+    <item
+        android:id="@+id/color_b_green_menu"
+        android:visible="true"
+        android:icon="@drawable/ic_green"
+        android:alphabeticShortcut="n"
+        android:title="B 绿色"/>
+</menu>

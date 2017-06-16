@@ -1,5 +1,6 @@
 package com.doctorcar.mobile.module.ask.model;
 
+import com.alibaba.fastjson.JSON;
 import com.doctorcar.mobile.api.Api;
 import com.doctorcar.mobile.api.HostType;
 import com.doctorcar.mobile.bean.UploadImageResult;
@@ -8,6 +9,7 @@ import com.doctorcar.mobile.common.baserx.RxSchedulers;
 import com.doctorcar.mobile.module.ask.bean.AnswerCommentResult;
 import com.doctorcar.mobile.module.ask.contract.AnswerCommentContract;
 import com.doctorcar.mobile.module.ask.contract.AskContract;
+import com.doctorcar.mobile.utils.TLUtil;
 
 import java.util.Map;
 
@@ -35,6 +37,7 @@ public class AnswerCommentModel implements AnswerCommentContract.Model {
         return Api.getDefault(HostType.GET_COMMENT_ANSWER_LIST).getAnswerComment( answer_id,page,page_size).map(new Func1<BaseRespose<AnswerCommentResult>, AnswerCommentResult>() {
             @Override
             public AnswerCommentResult call(BaseRespose<AnswerCommentResult> answerCommentResultBaseRespose) {
+//                TLUtil.showLog(JSON.toJSON(answerCommentResultBaseRespose.data).toString());
                 return answerCommentResultBaseRespose.data;
             }
         }).compose(RxSchedulers.<AnswerCommentResult>io_main());
