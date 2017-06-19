@@ -16,6 +16,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,6 +63,7 @@ import com.doctorcar.mobile.module.blog.fragment.SelectBlogFragment;
 import com.doctorcar.mobile.module.home.adapter.AnswerStarAdapter;
 import com.doctorcar.mobile.module.home.adapter.ArticleAdapter;
 import com.doctorcar.mobile.module.home.adapter.NewAskAdapter;
+import com.doctorcar.mobile.module.home.adapter.SpecialColumnAdapter;
 import com.doctorcar.mobile.module.home.bean.AnswerStarBean;
 import com.doctorcar.mobile.module.login.activity.LoginActivity;
 import com.doctorcar.mobile.module.mine.activity.AboutUsActivity;
@@ -148,7 +150,7 @@ public class MainFragment  extends Fragment implements OnBannerClickListener {
             initNewAsk(view);
             initArticle(view);
             initAnswerStar(view);
-
+            initSelectSpecialColumn(view);
 //            initHomeView(view);
 //			initDemoSettings(view);
             return view;
@@ -245,20 +247,25 @@ public class MainFragment  extends Fragment implements OnBannerClickListener {
     }
 
     public void initSelectSpecialColumn(View view){
-        BetterRecyclerView betterRecyclerView = (BetterRecyclerView) view.findViewById(R.id.home_fg_answer_brv);
-        betterRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));// 布局管理器。
-        betterRecyclerView.setHasFixedSize(true);// 如果Item够简单，高度是确定的，打开FixSize将提高性能。
-        betterRecyclerView.setItemAnimator(new DefaultItemAnimator());// 设置Item默认动画，加也行，不加也行。
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL);
-        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line));
-        betterRecyclerView.addItemDecoration(dividerItemDecoration);// 添加分割线。
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.home_fg_single_special_rv);
+
+        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(mLayoutManager);// 布局管理器。
+        recyclerView.setHasFixedSize(true);// 如果Item够简单，高度是确定的，打开FixSize将提高性能。
+        recyclerView.setNestedScrollingEnabled(false);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());// 设置Item默认动画，加也行，不加也行。
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL);
+//        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line));
+//        recyclerView.addItemDecoration(dividerItemDecoration);// 添加分割线。
         List<AnswerStarBean> answerStarBeanList = new ArrayList<AnswerStarBean>();
-        for(int i = 0 ; i < 10 ; i++){
+        for(int i = 0 ; i < 4 ; i++){
             AnswerStarBean answerStarBean = new AnswerStarBean();
             answerStarBeanList.add(answerStarBean);
         }
-        AnswerStarAdapter answerStarAdapter = new AnswerStarAdapter(getActivity(),answerStarBeanList);
-        betterRecyclerView.setAdapter(answerStarAdapter);
+        SpecialColumnAdapter answerStarAdapter = new SpecialColumnAdapter(getActivity(),answerStarBeanList);
+        recyclerView.setAdapter(answerStarAdapter);
+
     }
 
     public void initBlogView(View view) {
